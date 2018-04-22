@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<WorkGiverDef>
+		<defName>ExtinguishCampFire</defName>
+		<label>extinguish camp fire</label>
+
+		<giverClass>StoneCampFire.WorkGiverExtinguish</giverClass>
+		<!-- <giverClass>WorkGiver_Flick</giverClass> -->
+		<workType>Flicker</workType>
+
+		<verb>flick switch on</verb>
+		<gerund>flicking switch on</gerund>
+		<priorityInType>500</priorityInType>
+		
+		<requiredCapacities>
+			<li>Sight</li>
+			<li>Manipulation</li>
+		</requiredCapacities>
+	</WorkGiverDef>
+  
+</Defs>
