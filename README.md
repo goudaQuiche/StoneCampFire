@@ -1,4 +1,4 @@
-## LTF_Teleporter
+## Stony campfire
 #####
 ##Rimworld mod : 
 #####

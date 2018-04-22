@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Stony camp fire</name>
+	<name>Stony campfire</name>
 	<author>Gouda quiche</author>
 	<url>about:blank</url>
 	<targetVersion>0.18.1722</targetVersion>
-	<description>Adds a stone camp fire.
-- Will not disappear when out of fuel. 
-- Will show fire overlay accordingly.
-- Heats/glows accordingly.
-- Will toggle gather spot accordingly.
+	<description>Adds stony campfire to build.
+- Wont disappear when out of fuel. 
+- Shows fire overlay accordingly.
+- Glows accordingly.
+- Heats accordingly.
+- Toggles gather spot accordingly.
 </description>
 </ModMetaData>
