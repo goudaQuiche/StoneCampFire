@@ -4,7 +4,9 @@
 	<ThingDef ParentName="BuildingBase">
 		<defName>StoneCampfire</defName>
 		<label>stony campfire</label>
-		<thingClass>Building_WorkTable</thingClass>
+		<!-- <thingClass>Building_WorkTable</thingClass> -->
+		<thingClass>StoneCampFire.Building_CampFire</thingClass>
+
 		<description>Cooks meals and produces heat. As with all heat sources, it must be placed indoors so it has a closed space to heat. Refuelable.</description>
 		<category>Building</category>
 		
@@ -50,10 +52,10 @@
 			<li>PlaceWorker_Heater</li>
 		</placeWorkers>
 		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		
 		<comps>
 			<!-- <li Class="CompProperties_Flickable"/> -->
 			<li Class="StoneCampFire.CompProperties_Extinguishable"/>
-			
 			<li Class="CompProperties_Refuelable">
 				<compClass>StoneCampFire.CompLightableRefuelable</compClass>
 				<fuelConsumptionRate>10.0</fuelConsumptionRate>
@@ -66,7 +68,6 @@
 				</fuelFilter>
 				<destroyOnNoFuel>false</destroyOnNoFuel>
 			</li>
-			
 			<li Class="CompProperties_Glower">
 				<glowRadius>10</glowRadius>
 				<glowColor>(252,187,113,0)</glowColor>
@@ -83,24 +84,24 @@
 			<li>
 				<compClass>CompGatherSpot</compClass>
 			</li>
-			
 		</comps>
+		
 		<designationCategory>Temperature</designationCategory>
 		<designationHotKey>Misc1</designationHotKey>
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<recipes>
-		<li>CookMealSimpleCampfire</li>
-		<li>MakePemmicanCampfire</li>
-		<li>BurnApparelCampfire</li>
-		<li>BurnDrugs</li>
+			<li>CookMealSimpleCampfire</li>
+			<li>MakePemmicanCampfire</li>
+			<li>BurnApparelCampfire</li>
+			<li>BurnDrugs</li>
 		</recipes>
 		<inspectorTabs>
-		<li>ITab_Bills</li>
+			<li>ITab_Bills</li>
 		</inspectorTabs>
 		<building>
-		<isMealSource>true</isMealSource>
-		<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+			<isMealSource>true</isMealSource>
+			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
 		</building>
 		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
 	</ThingDef>

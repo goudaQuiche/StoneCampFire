@@ -4,3 +4,9 @@ C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFire\Assemb
 C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFire\Assemblies\StoneCampFire.pdb
 C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFire\Source\RimWorld_ExampleProjectDLL\obj\Debug\StoneCampFire.dll
 C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFire\Source\RimWorld_ExampleProjectDLL\obj\Debug\StoneCampFire.pdb
+C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Source\RimWorld_ExampleProjectDLL\obj\Debug\StoneCampFire.csprojResolveAssemblyReference.cache
+C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Source\RimWorld_ExampleProjectDLL\obj\Debug\StoneCampFire.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Source\RimWorld_ExampleProjectDLL\obj\Debug\StoneCampFire.dll
+C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Source\RimWorld_ExampleProjectDLL\obj\Debug\StoneCampFire.pdb
+C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Assemblies\StoneCampFire.dll
+C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Assemblies\StoneCampFire.pdb
