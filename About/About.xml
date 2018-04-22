@@ -4,7 +4,10 @@
 	<author>Gouda quiche</author>
 	<url>about:blank</url>
 	<targetVersion>0.18.1722</targetVersion>
-	<description>Adds a camp fire made of stones.
-	- wont get destroyed when empty
-	- cant be toggled off</description>
+	<description>Adds a stone camp fire.
+- Will not disappear when out of fuel. 
+- Will show fire overlay accordingly.
+- Heats/glows accordingly.
+- Will toggle gather spot accordingly.
+</description>
 </ModMetaData>

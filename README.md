@@ -1,7 +1,9 @@
-# LTF_Teleporter
+## LTF_Teleporter
 #####
-#Rimworld mod : 
+##Rimworld mod : 
 #####
-## adds an extinguishable/lightable camp fire.
-## Will not disappear when out of fuel. 
-## Will show fire overlay/heat/glow accordingly.
+# Adds an extinguishable/lightable camp fire.
+# Will not disappear when out of fuel. 
+# Will show fire overlay accordingly.
+# heats/glows accordingly.
+# Will toggle gather spot accordingly.

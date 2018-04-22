@@ -3,7 +3,7 @@
 
 	<ThingDef ParentName="BuildingBase">
 		<defName>StoneCampfire</defName>
-		<label>stoneCampfire</label>
+		<label>stony campfire</label>
 		<thingClass>Building_WorkTable</thingClass>
 		<description>Cooks meals and produces heat. As with all heat sources, it must be placed indoors so it has a closed space to heat. Refuelable.</description>
 		<category>Building</category>
