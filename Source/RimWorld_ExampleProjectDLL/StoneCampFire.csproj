@@ -65,7 +65,9 @@
     <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolsGizmo.cs" />
+    <Compile Include="WorkGiver_DoStonyBills.cs" />
     <Compile Include="WorkGiver_ExtinguishCampFire.cs" />
+    <Compile Include="WorkGiver_LightableRefuelable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

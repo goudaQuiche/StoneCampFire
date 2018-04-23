@@ -7,7 +7,7 @@ namespace StoneCampFire
     public class CompLightableRefuelable : CompRefuelable
     {
         protected CompExtinguishable stoneComp;
-        protected CompRefuelable refuelableComp;
+        //protected CompRefuelable refuelableComp;
         protected CompBreakdownable breakdownableComp;
 
         //private float fuel;
@@ -36,14 +36,27 @@ namespace StoneCampFire
             {
                 this.ConsumeFuel(this.Props.fuelConsumptionPerTickInRain);
             }
+
+            if(stoneComp.SwitchIsOn && (Fuel <= 0)) 
+            {
+                stoneComp.DoFlick(false);
+            }
         }
-        
+
+        public float MyFuelPercentOfMax
+        {
+            get
+            {
+                return this.FuelPercentOfMax;
+            }
+        }
+
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
             this.Refuel(this.Props.fuelCapacity);
             //this.fuel = this.Props.fuelCapacity;
-            //this.stoneComp = this.parent.GetComp<CompExtinguishable>();
+            stoneComp = this.parent.GetComp<CompExtinguishable>();
         }
 
         /*
@@ -59,8 +72,8 @@ namespace StoneCampFire
         {
             base.PostSpawnSetup(respawningAfterLoad);
             this.stoneComp = this.parent.GetComp<CompExtinguishable>();
-            this.refuelableComp = this.parent.GetComp<CompRefuelable>();
-            this.breakdownableComp = this.parent.GetComp<CompBreakdownable>();
+            //this.refuelableComp = this.parent.GetComp<CompRefuelable>();
+            //this.breakdownableComp = this.parent.GetComp<CompBreakdownable>();
         }
     }
 }

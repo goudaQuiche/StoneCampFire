@@ -22,6 +22,8 @@ namespace StoneCampFire
         String myDefName = string.Empty;
         Map myMap = null;
 
+        CompLightableRefuelable compFuel = null;
+
         private bool switchOnInt = true;
 
 		private bool wantSwitchOn = true;
@@ -121,6 +123,8 @@ namespace StoneCampFire
             buildingName = building?.LabelShort;
 
             myMap = building?.Map;
+
+            compFuel = this.parent.GetComp<CompLightableRefuelable>();
         }
 
         public override void PostExposeData()
@@ -169,12 +173,25 @@ namespace StoneCampFire
 
         }
 
-		public void DoFlick()
+		public void DoFlick(bool active=true)
 		{
             //Tools.Warn("Trying DoFlick ", true);
 
-            SoundDef mySound = SoundDef.Named((SwitchIsOn) ? ("CampFireExtinguish") : ("CampFireLight"));
-            mySound.PlayOneShot(new TargetInfo(this.parent.Position, this.parent.Map, false));
+            if (active)
+            {
+                SoundDef mySound = SoundDef.Named((SwitchIsOn) ? ("CampFireExtinguish") : ("CampFireLight"));
+                mySound.PlayOneShot(new TargetInfo(this.parent.Position, this.parent.Map, false));
+            }
+
+            if (SwitchIsOn)
+            {
+                MoteMaker.ThrowSmoke(buildingPos, myMap, compFuel.FuelPercentOfMax);
+                    //MakeWaterSplash(pPos.ToVector3Shifted(), pawn.Map, radius, 15f);
+            }
+            else
+            {
+                MoteMaker.ThrowMicroSparks(buildingPos, myMap);
+            }
 
             ChangeComps();
 
