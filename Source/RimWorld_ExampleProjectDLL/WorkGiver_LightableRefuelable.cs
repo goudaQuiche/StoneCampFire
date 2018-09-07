@@ -10,8 +10,9 @@ namespace StoneCampFire
     public class WorkGiver_StonyRefuel : WorkGiver_Scanner
     {
         ThingDef myDef = ThingDef.Named("StoneCampfire");
+        //StoneCampfire
         //string jobName = "StoneCampFire.JobDriver_Extinguish";
-        string jobName = "ExtinguishCampFire";
+        //string jobName = "ExtinguishCampFire";
 
         /*
         public override ThingRequest PotentialWorkThingRequest

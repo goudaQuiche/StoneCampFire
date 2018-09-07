@@ -1,14 +1,13 @@
 using RimWorld;
 using System;
+using Verse;
 
-namespace Verse
+namespace StoneCampFire
 {
 	public class CompHeatPusherPowered : CompHeatPusher
 	{
 		protected CompPowerTrader powerComp;
-
 		protected CompRefuelable refuelableComp;
-
 		protected CompBreakdownable breakdownableComp;
 
 		protected override bool ShouldPushHeatNow

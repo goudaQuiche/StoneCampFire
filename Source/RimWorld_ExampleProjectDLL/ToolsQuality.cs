@@ -41,8 +41,26 @@ namespace StoneCampFire
         public static string VirtualQuality(CompQuality comp, int relativeChange = 0)
         {
             string answer = "no quality comp";
-            if (comp != null)
-                answer = comp.Quality.AddLevels(relativeChange).GetLabelShort();
+
+            if (comp == null)
+                return answer;
+
+            QualityCategory qualityCategory = QualityCategory.Normal;
+            answer = comp.Quality.ToString();
+
+            if (relativeChange>0)
+            {
+                if (comp.Quality != QualityCategory.Legendary)
+                    qualityCategory = comp.Quality + 1;
+            }
+            else
+            {
+                if (comp.Quality != QualityCategory.Awful)
+                    qualityCategory = comp.Quality - 1;
+            }
+            //answer = comp.Quality.AddLevels(relativeChange).GetLabelShort();
+
+            answer = qualityCategory.ToString();
 
             return (answer);
         }
@@ -61,15 +79,27 @@ namespace StoneCampFire
 
             if (better)
             {
-                comp?.SetQuality(myQuality.AddLevels(1), ArtGenerationContext.Colony);
-
+                if (myQuality != QualityCategory.Legendary)
+                    myQuality = myQuality + 1;
             }
             else
             {
-                comp.SetQuality(myQuality.AddLevels(-1), ArtGenerationContext.Colony);
+                if (myQuality != QualityCategory.Awful)
+                    myQuality = myQuality - 1;
             }
+                /*
+                if (better)
+                {
+                    comp?.SetQuality(myQuality.AddLevels(1), ArtGenerationContext.Colony);
 
-            return (remember != myQuality);
+                }
+                else
+                {
+                    comp.SetQuality(myQuality.AddLevels(-1), ArtGenerationContext.Colony);
+                }
+                */
+
+                return (remember != myQuality);
         }
         public static CompQuality SetQuality(Building bench, bool debug = false)
         {

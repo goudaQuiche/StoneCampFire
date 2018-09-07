@@ -103,29 +103,45 @@ namespace StoneCampFire
         }
 
         // Stone camp fire
-        public static void UnsetCompGlower(Thing t, Map map)
+        public static void SetCompGlower(Thing t, Map map, bool burning=true)
         {
+            Tools.Warn("Trying to set glow:"+burning, true);
             CompGlower comp = t.TryGetComp<CompGlower>();
             if (comp is CompGlower) {
-                comp.Props.glowRadius = 3f;
-                comp.Props.glowColor = new ColorInt(255, 200, 20, 0) * 1.45f;
+                /*
+                CompGlower myThingComp = new CompGlower();
+                myThingComp.parent = (ThingWithComps)t;
+
+                CompProperties compProps = new CompProperties();
+                compProps.compClass = typeof(CompGlower);
+
+                ColorInt newcolor = (burning)?(new ColorInt(252, 187, 113, 0) * 1.45f):( new ColorInt(255, 50, 0, 0) * 1.45f);
+                compProps.compClass.GetProperties.
+                compProps.glow = newcolor;
+                compProps.glowRadius = glowRadius;
+                */
+                //myThingComp.Initialize(compProps);
+                comp.Props.glowColor = (burning) ? (new ColorInt(252, 187, 113, 0) * 1.45f) : (new ColorInt(255, 50, 0, 0) * 1.45f);
+                comp.Props.glowRadius = (burning) ? 10f : 2f;
+                
+                Tools.Warn(" glow rad:" + comp.Props.glowRadius, true);
+                comp.Initialize(comp.Props);
+                comp.UpdateLit(map);
+                map.glowGrid.RegisterGlower(comp);
+                comp.UpdateLit(map);
+
             } else
                 Tools.Warn("should have found a CompGlower but no CompGlower found", true);
         }
         // Stone camp fire
-        public static void SetCompGlower(Thing t, Map map)
+        public static void SetFlickableGlower(Thing t, Map map, bool burning = true)
         {
-            /*
-            CompGlower comp = t.TryGetComp<CompGlower>();
-            if (comp is CompGlower)
-                comp.PostDestroy(DestroyMode.Vanish, map);
-            //comp.PostDeSpawn(map);
-            else
-                Tools.Warn("should have found a CompGlower but no CompGlower found", true);
-             */
+            Tools.Warn("Trying to set glow:" + burning, true);
+            CompLightableGlower comp = t.TryGetComp<CompLightableGlower>();
+            comp.updateDisplay();
         }
 
-        public static void UnsetCompHeatPusher(Thing t, Map map)
+            public static void UnsetCompHeatPusher(Thing t, Map map)
         {
             CompHeatPusher comp = t.TryGetComp<CompHeatPusher>();
             if (comp is CompHeatPusher)
@@ -139,16 +155,32 @@ namespace StoneCampFire
             CompLightableFireOverlay comp = t.TryGetComp<CompLightableFireOverlay>();
             if (comp is CompLightableFireOverlay)
             {
-                comp.Toggle();
+                    comp.Toggle();
             }
             else
                 Tools.Warn("should have found a CompFireOverlay but no CompFireOverlay found", true);
         }
-        public static void ToggleCompGatherSpot(Thing t)
+        public static void SetFireOverlay(Thing t, Map map, bool value = true)
+        {
+            CompLightableFireOverlay comp = t.TryGetComp<CompLightableFireOverlay>();
+            if (comp is CompLightableFireOverlay)
+            {
+                Tools.Warn("Trying to set fire overlay:" + value, true);
+                comp.SetBurn(value);
+            }
+            else
+                Tools.Warn("should have found a CompFireOverlay but no CompFireOverlay found", true);
+        }
+        public static void ToggleCompGatherSpot(Thing t, bool force = false, bool value = false)
         {
             CompGatherSpot comp = t.TryGetComp<CompGatherSpot>();
             if (comp is CompGatherSpot)
-                comp.Active = false;
+            {
+                if(!force)
+                    comp.Active = false;
+                else
+                    comp.Active = value;
+            }
             else
                 Tools.Warn("should have found a CompGatherSpot but no CompGatherSpot found", true);
         }

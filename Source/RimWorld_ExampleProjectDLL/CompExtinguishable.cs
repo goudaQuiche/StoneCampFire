@@ -9,8 +9,6 @@ using Verse.Sound;
 using UnityEngine;
 
 
-
-
 namespace StoneCampFire
 {
 	public class CompExtinguishable : ThingComp
@@ -18,6 +16,7 @@ namespace StoneCampFire
         // Work base
         Building building = null;
         Vector3 buildingPos;
+        ThingDef myDef = null;
         String buildingName = string.Empty;
         String myDefName = string.Empty;
         Map myMap = null;
@@ -84,14 +83,8 @@ namespace StoneCampFire
 					return;
 				}
 				switchOnInt = value;
-				if (switchOnInt)
-				{
-					parent.BroadcastCompSignal("FlickedOn");
-				}
-				else
-				{
-					parent.BroadcastCompSignal("FlickedOff");
-				}
+
+				parent.BroadcastCompSignal((switchOnInt)?"FlickedOn": "FlickedOff");
 				if (parent.Spawned)
 				{
 					this.parent.Map.mapDrawer.MapMeshDirty(this.parent.Position, MapMeshFlag.Things | MapMeshFlag.Buildings);
@@ -109,8 +102,10 @@ namespace StoneCampFire
 				}
 				if (this.offGraphic == null)
 				{
-					this.offGraphic = GraphicDatabase.Get(this.parent.def.graphicData.graphicClass, this.parent.def.graphicData.texPath + "_Off", ShaderDatabase.ShaderFromType(this.parent.def.graphicData.shaderType), this.parent.def.graphicData.drawSize, this.parent.DrawColor, this.parent.DrawColorTwo);
-				}
+                    //this.offGraphic = GraphicDatabase.Get(this.parent.def.graphicData.graphicClass, this.parent.def.graphicData.texPath + "_Off", ShaderDatabase.ShaderFromType(this.parent.def.graphicData.shaderType), this.parent.def.graphicData.drawSize, this.parent.DrawColor, this.parent.DrawColorTwo);
+                    this.offGraphic = GraphicDatabase.Get(this.parent.def.graphicData.graphicClass, this.parent.def.graphicData.texPath + "_Off", ShaderDatabase.LoadShader(this.parent.def.graphicData.texPath), this.parent.def.graphicData.drawSize, this.parent.DrawColor, this.parent.DrawColorTwo);
+                    //ShaderFromType(this.parent.def.graphicData.shaderType), this.parent.def.graphicData.drawSize, this.parent.DrawColor, this.parent.DrawColorTwo);
+                }
 				return this.offGraphic;
 			}
 		}
@@ -118,13 +113,18 @@ namespace StoneCampFire
         {
             //Building
             building = (Building)parent;
-            myDefName = building?.def?.label;
+            
+            myDefName = building?.def?.defName;
+            myDef = ThingDef.Named(myDefName);
+
             buildingPos = building.DrawPos;
             buildingName = building?.LabelShort;
 
             myMap = building?.Map;
 
             compFuel = this.parent.GetComp<CompLightableRefuelable>();
+
+            ChangeComps();
         }
 
         public override void PostExposeData()
@@ -139,20 +139,36 @@ namespace StoneCampFire
             //Tools.Warn("wantSwitchOn: " + Tools.OkStr(wantSwitchOn) + "!=" + Tools.OkStr(switchOnInt), true);
             return wantSwitchOn != switchOnInt;
 		}
-
+        void MySetCompGlower()
+        {
+            ToolsBuilding.SetCompGlower(parent, myMap, true);
+            //ToolsBuilding.SetFlickableGlower(parent, myMap, true);
+        }
         void MyUnsetCompGlower()
         {
-            ToolsBuilding.UnsetCompGlower(parent, myMap);
+            ToolsBuilding.SetCompGlower(parent, myMap, false);
+            //ToolsBuilding.SetFlickableGlower(parent, myMap, false);
         }
+
         void ToggleFireOverlay()
         {
             ToolsBuilding.ToggleFireOverlay(parent, myMap);
+        }
+        void SetFireOverlay(bool value=true)
+        {
+            ToolsBuilding.SetFireOverlay(parent, myMap, value);
         }
 
         void MyUnsetCompHeatPusher()
         {
             ToolsBuilding.UnsetCompHeatPusher(parent, myMap);
         }
+        /*
+        void MySetCompHeatPusher()
+        {
+            ToolsBuilding.SetCompHeatPusher(parent, myMap, myDef);
+        }
+        */
 
         void ChangeComps()
         {
@@ -161,15 +177,21 @@ namespace StoneCampFire
             if (SwitchIsOn)
             {
                 //Glower
-                MyUnsetCompGlower();
-                //Gather
-                ToolsBuilding.ToggleCompGatherSpot(parent);
-                //heat
-                MyUnsetCompHeatPusher();
-                //fire overlay
-                
+                MySetCompGlower();
             }
-            ToggleFireOverlay();
+            else
+            {
+                //Glower
+                MyUnsetCompGlower();
+            }
+
+            //heat
+            //MySetCompHeatPusher();
+            // gather
+            ToolsBuilding.ToggleCompGatherSpot(parent, true, SwitchIsOn);
+            //fire overlay
+            SetFireOverlay(SwitchIsOn);
+            //ToggleFireOverlay();
 
         }
 
@@ -193,9 +215,9 @@ namespace StoneCampFire
                 MoteMaker.ThrowMicroSparks(buildingPos, myMap);
             }
 
-            ChangeComps();
-
             SwitchIsOn = !SwitchIsOn;
+            ChangeComps();
+            
         }
 
 		public void ResetToOn()
@@ -224,7 +246,7 @@ namespace StoneCampFire
                 //Action todo = DoFlick;                    //toggleAction = todo,
                 yield return new Command_Toggle
                 {
-                    hotKey = KeyBindingDefOf.CommandTogglePower,
+                    hotKey = KeyBindingDefOf.Command_TogglePower,
                     //icon = this.CommandTex,
                     icon = this.MyCommandTex,
                     defaultLabel = this.Props.commandLabelKey.Translate(),

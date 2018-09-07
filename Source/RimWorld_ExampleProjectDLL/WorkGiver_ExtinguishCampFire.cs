@@ -7,9 +7,13 @@ using RimWorld;
 
 namespace StoneCampFire
 {
-    public class WorkGiverExtinguish : WorkGiver_Scanner
+    public class WorkGiverExtinguish : WorkGiver_Scanner//, WorkGiver
     {
+        //string myDefName = "StoneCampfire"
+        //ThingDef myDef = ThingDef.Named(myDefName);
+        //myDef = ThingDef.Named(myDefName);
         ThingDef myDef = ThingDef.Named("StoneCampfire");
+        
         //string jobName = "StoneCampFire.JobDriver_Extinguish";
         string jobName = "ExtinguishCampFire";
 
@@ -40,7 +44,7 @@ namespace StoneCampFire
             return pawn.Map.listerBuildings.AllBuildingsColonistOfDef(ThingDefOf.DeepDrill).Cast<Thing>();
         }
 
-        public override bool ShouldSkip(Pawn pawn)
+        public override bool ShouldSkip(Pawn pawn, bool forced = false)
         {
             List<Building> allBuildingsColonist = pawn.Map.listerBuildings.allBuildingsColonist;
             for (int i = 0; i < allBuildingsColonist.Count; i++)

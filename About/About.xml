@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Stony campfire</name>
+	<name>Stony campfire src</name>
 	<author>Gouda quiche</author>
 	<url>about:blank</url>
-	<targetVersion>0.18.1722</targetVersion>
+	<targetVersion>0.19.2009</targetVersion>
 	<description>Adds stony campfire to build.
 - Wont disappear when out of fuel. 
 - Shows fire overlay accordingly.

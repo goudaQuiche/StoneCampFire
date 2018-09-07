@@ -7,8 +7,9 @@ using Verse.AI;
 namespace StoneCampFire
 {
     public class JobDriver_Extinguish : JobDriver
+    //public class JobDriver_Extinguish : JobDriver_SingleInteraction
     {
-        public override bool TryMakePreToilReservations()
+        public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             //Tools.Warn("try make pre toil reservations", true);
             return this.pawn.Reserve(this.job.targetA, this.job, 1, -1, null);

@@ -45,7 +45,7 @@
 			<WoodLog>20</WoodLog> <!-- just the intial wood -->
 		</costList>
 
-		<soundImpactDefault>BulletImpactGround</soundImpactDefault>
+		<soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
 		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
 		<resourcesFractionWhenDeconstructed>0</resourcesFractionWhenDeconstructed>
 		<placeWorkers>
@@ -69,6 +69,7 @@
 				<destroyOnNoFuel>false</destroyOnNoFuel>
 			</li>
 			<li Class="CompProperties_Glower">
+				<!-- <compClass>StoneCampFire.CompProperties_LightableGlower</compClass> -->
 				<glowRadius>10</glowRadius>
 				<glowColor>(252,187,113,0)</glowColor>
 			</li>
@@ -91,9 +92,9 @@
 		<hasInteractionCell>True</hasInteractionCell>
 		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
 		<recipes>
-			<li>CookMealSimpleCampfire</li>
-			<li>MakePemmicanCampfire</li>
-			<li>BurnApparelCampfire</li>
+			<li>CookMealSimple</li>
+			<li>Make_Pemmican</li>
+			<li>BurnApparel</li>
 			<li>BurnDrugs</li>
 		</recipes>
 		<inspectorTabs>

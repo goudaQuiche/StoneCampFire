@@ -24,6 +24,11 @@ namespace StoneCampFire
             burning = !burning;
         }
 
+        public void SetBurn(bool value=true)
+        {
+            burning = value;
+        }
+
         public override void PostExposeData()
         {
             base.PostExposeData();

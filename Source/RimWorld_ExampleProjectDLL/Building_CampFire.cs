@@ -10,7 +10,9 @@ namespace StoneCampFire
 		private CompBreakdownable breakdownableComp;
         private CompExtinguishable extinguishComp;
 
-        public override bool UsableNow
+        //public override bool UsableNow
+        public new bool CurrentlyUsableForBills
+        //public override bool UsedThisTick
         {
             get
             {
