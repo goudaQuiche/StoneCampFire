@@ -225,6 +225,12 @@ namespace StoneCampFire
 			switchOnInt = true;
 			wantSwitchOn = true;
 		}
+
+        public void ResetToOff()
+        {
+            switchOnInt = false;
+            wantSwitchOn = false;
+        }
         /*
         public override string CompInspectStringExtra()
         {
@@ -233,7 +239,7 @@ namespace StoneCampFire
         }
         */
 
-        
+
         [DebuggerHidden]
 		public override IEnumerable<Gizmo> CompGetGizmosExtra()
 		{

@@ -40,6 +40,7 @@ namespace StoneCampFire
             if(stoneComp.SwitchIsOn && (Fuel <= 0)) 
             {
                 stoneComp.DoFlick(false);
+                stoneComp.ResetToOff();
             }
         }
 
