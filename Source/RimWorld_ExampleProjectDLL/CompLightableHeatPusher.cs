@@ -14,7 +14,8 @@ namespace StoneCampFire
         {
             get
             {
-                return (this.stoneComp == null || this.stoneComp.SwitchIsOn) 
+                return base.ShouldPushHeatNow
+                    && (this.stoneComp == null || this.stoneComp.SwitchIsOn) 
                     && (this.refuelableComp == null || this.refuelableComp.HasFuel)
                     && (this.breakdownableComp == null || !this.breakdownableComp.BrokenDown);
             }

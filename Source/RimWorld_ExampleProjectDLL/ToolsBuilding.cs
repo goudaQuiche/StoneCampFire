@@ -105,7 +105,7 @@ namespace StoneCampFire
         // Stone camp fire
         public static void SetCompGlower(Thing t, Map map, bool burning=true)
         {
-            Tools.Warn("Trying to set glow:"+burning, true);
+            //Tools.Warn("Trying to set glow:"+burning, true);
             CompGlower comp = t.TryGetComp<CompGlower>();
             if (comp is CompGlower) {
                 /*
@@ -124,7 +124,7 @@ namespace StoneCampFire
                 comp.Props.glowColor = (burning) ? (new ColorInt(252, 187, 113, 0) * 1.45f) : (new ColorInt(255, 50, 0, 0) * 1.45f);
                 comp.Props.glowRadius = (burning) ? 10f : 2f;
                 
-                Tools.Warn(" glow rad:" + comp.Props.glowRadius, true);
+                //Tools.Warn(" glow rad:" + comp.Props.glowRadius, true);
                 comp.Initialize(comp.Props);
                 comp.UpdateLit(map);
                 map.glowGrid.RegisterGlower(comp);
@@ -136,7 +136,7 @@ namespace StoneCampFire
         // Stone camp fire
         public static void SetFlickableGlower(Thing t, Map map, bool burning = true)
         {
-            Tools.Warn("Trying to set glow:" + burning, true);
+            //Tools.Warn("Trying to set glow:" + burning, true);
             CompLightableGlower comp = t.TryGetComp<CompLightableGlower>();
             comp.updateDisplay();
         }
@@ -165,7 +165,7 @@ namespace StoneCampFire
             CompLightableFireOverlay comp = t.TryGetComp<CompLightableFireOverlay>();
             if (comp is CompLightableFireOverlay)
             {
-                Tools.Warn("Trying to set fire overlay:" + value, true);
+                //Tools.Warn("Trying to set fire overlay:" + value, true);
                 comp.SetBurn(value);
             }
             else
