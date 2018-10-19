@@ -10,3 +10,4 @@ C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Sou
 C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Assemblies\StoneCampFire.dll
 C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Assemblies\StoneCampFire.pdb
 C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Source\RimWorld_ExampleProjectDLL\obj\Debug\StoneCampFire.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\SteamApps\common\RimWorld\Mods\StoneCampFireSrc\Source\RimWorld_ExampleProjectDLL\obj\Debug\StoneCampFire.csproj.CopyComplete

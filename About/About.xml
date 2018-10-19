@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Stony campfire src</name>
+	<name>Stony campfire non steam</name>
 	<author>Gouda quiche</author>
-	<url>about:blank</url>
-	<targetVersion>0.19.2009</targetVersion>
+	<url>https://ludeon.com/forums/index.php?topic=41292.0</url>
+	<targetVersion>1.0.2059</targetVersion>
 	<description>Adds stony campfire to build.
 - Wont disappear when out of fuel. 
 - Shows fire overlay accordingly.
