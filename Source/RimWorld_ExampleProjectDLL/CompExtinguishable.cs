@@ -43,7 +43,15 @@ namespace StoneCampFire
 			}
 		}
 
-		private Texture2D CommandTex
+        public float ExtinguishInRainChance
+        {
+            get
+            {
+                return Props.extinguishInRainChance;
+            }
+        }
+
+        private Texture2D CommandTex
 		{
 			get
 			{

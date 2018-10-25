@@ -75,10 +75,14 @@ namespace StoneCampFire
                     if (FindBestFuel(pawn, t) == null)
                     {
                         ThingFilter fuelFilter = t.TryGetComp<CompLightableRefuelable>().Props.fuelFilter;
+
+                        //Avertissement CS0618  'Translator.Translate(string, params object[])' est obsolète: 'Use TranslatorFormattedStringExtensions'   
                         JobFailReason.Is("NoFuelToRefuel".Translate(new object[]
                         {
                             fuelFilter.Summary
                         }));
+                        
+                        //JobFailReason.Is("NoFuelToRefuel".
                         return false;
                     }
                     //Tools.Warn("Found best fuel", true);

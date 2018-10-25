@@ -35,6 +35,9 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="LTF_Lanius">
+      <HintPath>..\..\..\LTF_Lanius - Src\Assemblies\LTF_Lanius.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,6 +61,7 @@
     <Compile Include="GfxFire.cs" />
     <Compile Include="JobDriver_Extinguish.cs" />
     <Compile Include="ExtinguishUtility.cs" />
+    <Compile Include="ModCompatibilityCheck.cs" />
     <Compile Include="ToolsBuilding.cs" />
     <Compile Include="Gfx.cs" />
     <Compile Include="ToolsQuality.cs" />

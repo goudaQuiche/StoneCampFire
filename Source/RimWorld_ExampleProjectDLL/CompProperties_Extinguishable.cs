@@ -5,6 +5,8 @@ namespace StoneCampFire
 {
     public class CompProperties_Extinguishable : CompProperties
     {
+        public float extinguishInRainChance = 0.2f;
+
         public string commandTextureOn = "UI/Commands/Extinguishable/Light";
         public string commandTextureOff = "UI/Commands/Extinguishable/Extinguish";
 
