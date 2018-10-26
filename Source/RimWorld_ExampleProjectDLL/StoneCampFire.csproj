@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Building_CampFire.cs" />
+    <Compile Include="CompProperties_VariousGlow.cs" />
+    <Compile Include="CompVariousGlow.cs" />
     <Compile Include="CompExtinguishable.cs" />
     <Compile Include="CompLightableFireOverlay.cs" />
     <Compile Include="CompLightableGlower.cs" />

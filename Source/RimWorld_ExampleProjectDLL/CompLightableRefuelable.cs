@@ -75,6 +75,7 @@ namespace StoneCampFire
 
         private bool RollForRainFire()
         {
+            // propsChance * isItRaining
             float chance = stoneComp.ExtinguishInRainChance * this.parent.Map.weatherManager.RainRate;
             if (!Rand.Chance(chance))
             {
@@ -82,6 +83,7 @@ namespace StoneCampFire
             }
 
             Building building = this.parent as Building;
+            // unroofed
             if (!building.Map.roofGrid.Roofed(building.Position))
             {
                 stoneComp.DoFlick(false);
