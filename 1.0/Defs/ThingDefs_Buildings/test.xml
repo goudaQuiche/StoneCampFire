@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>glowtest</defName>
+    <label>glow spot</label>
+    <description>A place to lol</description>
+    <thingClass>Building_WorkTable</thingClass>
+	
+    <graphicData>
+      <texPath>Things/Building/Production/CraftingSpot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+	
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+	
+    <statBases>
+      <WorkToBuild>0</WorkToBuild>
+      <WorkTableWorkSpeedFactor>0.5</WorkTableWorkSpeedFactor>
+    </statBases>
+	
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <useHitPoints>false</useHitPoints>
+    <size>(1,1)</size>
+    <designationCategory>Production</designationCategory>
+    <passability>Standable</passability>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+    <surfaceType>Item</surfaceType>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+	
+    <building>
+      <workSpeedPenaltyOutdoors>true</workSpeedPenaltyOutdoors>
+      <workSpeedPenaltyTemperature>true</workSpeedPenaltyTemperature>
+      <spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+      <sowTag>SupportPlantsOnly</sowTag>
+      <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+      <ai_chillDestination>false</ai_chillDestination>
+    </building>
+	
+    <comps>
+      <li Class="CompProperties_AffectedByFacilities">
+        <linkableFacilities>
+          <li>ToolCabinet</li>
+        </linkableFacilities>
+      </li>
+      <li>
+        <compClass>CompReportWorkSpeed</compClass>
+      </li>
+	  <li Class="CompProperties_Glower">
+        <glowRadius>5</glowRadius>
+        <glowColor>(73,123,138,0)</glowColor>
+      </li>
+		<li Class="StoneCampFire.CompProperties_VariousGlow">
+		</li>
+    </comps>
+	
+    <designationHotKey>Misc1</designationHotKey>
+    <placeWorkers>
+      <li>PlaceWorker_ShowFacilitiesConnections</li>
+      <li>PlaceWorker_ReportWorkSpeedPenalties</li>
+    </placeWorkers>
+  </ThingDef>
+</Defs>
+  

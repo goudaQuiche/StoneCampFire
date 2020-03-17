@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <JobDef>
+    <defName>ExtinguishCampFire</defName>
+    <driverClass>StoneCampFire.JobDriver_Extinguish</driverClass>
+    <reportString>extinguishing camp fire.</reportString>
+  </JobDef>
+
+</Defs>
