@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="BuildingBase">
+		<defName>StoneCampfire</defName>
+		<label>stony campfire</label>
+		<!-- <thingClass>Building_WorkTable</thingClass> -->
+		<thingClass>StoneCampFire.Building_CampFire</thingClass>
+
+		<description>Cooks meals and produces heat. As with all heat sources, it must be placed indoors so it has a closed space to heat. Refuelable.</description>
+		<category>Building</category>
+
+		<graphicData>
+			<texPath>Things/Building/StoneCampFire/Full</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawRotated>false</drawRotated>
+			<allowFlip>false</allowFlip>
+			<damageData>
+				<rect>(0.2,0,0.6,0.1)</rect>
+			</damageData>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<pathCost>70</pathCost>
+		<!-- <constructEffect>ConstructDirt</constructEffect> -->
+
+		<tickerType>Normal</tickerType>
+		<drawerType>RealtimeOnly</drawerType>
+		<fillPercent>0.20</fillPercent>
+
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>400</WorkToBuild>
+			<Flammability>0</Flammability>
+			<WorkTableWorkSpeedFactor>0.6</WorkTableWorkSpeedFactor>
+			<MeditationFocusStrength>0.0</MeditationFocusStrength>
+		</statBases>
+		<selectable>true</selectable>
+
+		<stuffCategories>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>15</costStuffCount>
+
+		<!--
+		<costList>
+			<WoodLog>20</WoodLog>
+		</costList>
+		-->
+
+		<soundImpactDefault>BulletImpact_Ground</soundImpactDefault>
+
+		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+		<resourcesFractionWhenDeconstructed>.6</resourcesFractionWhenDeconstructed>
+
+		<placeWorkers>
+			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
+			<li>PlaceWorker_Heater</li>
+			<li>PlaceWorker_MeditationOffsetBuildingsNear</li>
+		</placeWorkers>
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+
+		<comps>
+			<!-- <li Class="CompProperties_Flickable"/> -->
+			<li Class="CompProperties_Refuelable">
+				<compClass>StoneCampFire.CompLightableRefuelable</compClass>
+				<!--<li Class="StoneCampFire.CompProperties_LightableRefuelable">-->
+				<fuelConsumptionRate>10.0</fuelConsumptionRate>
+				<fuelCapacity>20.0</fuelCapacity>
+				<fuelConsumptionPerTickInRain>0.0006</fuelConsumptionPerTickInRain>
+				<fuelFilter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</fuelFilter>
+				<consumeFuelOnlyWhenUsed>false</consumeFuelOnlyWhenUsed>
+				<!-- <destroyOnNoFuel>false</destroyOnNoFuel> -->
+				<initialFuelPercent>0</initialFuelPercent>
+				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
+			</li>
+
+			<li Class="StoneCampFire.CompProperties_Extinguishable">
+				<debug>true</debug>
+			</li>
+
+			<!--
+			<li Class="CompProperties_Glower">
+				<glowRadius>10</glowRadius>
+				<glowColor>(252,187,113,0)</glowColor>
+			</li>
+			-->
+			<li Class="CompProperties_HeatPusher">
+				<compClass>StoneCampFire.CompLightableHeatPusher</compClass>
+				<heatPerSecond>21</heatPerSecond>
+				<heatPushMaxTemperature>28</heatPushMaxTemperature>
+			</li>
+			<li Class="StoneCampFire.CompProperties_LightableFireOverlay">
+				<fireSize>.85</fireSize>
+				<offset>(0,0,.27)</offset>
+				<!--
+				<textureProbability>
+					<li>
+						<curve>
+							<points>
+								<li>(1,100)</li>
+								<li>(.34,100)</li>
+								<li>(.25,75)</li>
+								<li>(.16,0)</li>
+							</points>
+						</curve>
+					</li>
+				</textureProbability>
+				-->
+			</li>
+			<li>
+				<compClass>CompGatherSpot</compClass>
+			</li>
+			<li Class="CompProperties_MeditationFocus">
+				<statDef>MeditationFocusStrength</statDef>
+				<focusTypes>
+					<li>Flame</li>
+				</focusTypes>
+				<offsets>
+					<li Class="FocusStrengthOffset_Lit">
+						<offset>0.12</offset>
+					</li>
+					<li Class="FocusStrengthOffset_BuildingDefsLit">
+						<defs>
+							<li>Campfire</li>
+							<li>TorchLamp</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty">Brazier</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
+							<li MayRequire="Ludeon.RimWorld.Ideology">Darktorch</li>
+							<li MayRequire="Ludeon.RimWorld.Ideology">DarktorchFungus</li>
+						</defs>
+						<offsetPerBuilding>0.02</offsetPerBuilding>
+						<radius>9.9</radius>
+						<maxBuildings>8</maxBuildings>
+						<explanationKey>MeditationFocusPerFlame</explanationKey>
+						<explanationKeyAbstract>MeditationFocusPerFlameAbstract</explanationKeyAbstract>
+					</li>
+				</offsets>
+			</li>
+		</comps>
+
+		<designationCategory>Temperature</designationCategory>
+		<designationHotKey>Misc1</designationHotKey>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<recipes>
+			<li>CookMealSimple</li>
+			<li>CookMealSimpleBulk</li>
+			<li>Make_Pemmican</li>
+			<li>Make_PemmicanBulk</li>
+			<li>BurnApparel</li>
+			<li>BurnWeapon</li>
+			<li>BurnDrugs</li>
+		</recipes>
+		<inspectorTabs>
+			<li>ITab_Bills</li>
+		</inspectorTabs>
+		<building>
+			<isMealSource>true</isMealSource>
+			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
+			<artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+			<destroySound>BuildingDestroyed_Stone_Small</destroySound>
+		</building>
+		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+	</ThingDef>
+
+</Defs>
