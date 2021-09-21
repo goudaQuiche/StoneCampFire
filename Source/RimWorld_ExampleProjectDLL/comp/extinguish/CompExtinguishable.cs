@@ -164,7 +164,7 @@ namespace StoneCampFire
 
 		public bool WantsFlick()
 		{
-            if(MyDebug) Log.Warning("wantSwitchOn: " + Tools.OkStr(wantSwitchOn) + "!=" + Tools.OkStr(switchOnInt));
+            //if(MyDebug) Log.Warning("wantSwitchOn: " + Tools.OkStr(wantSwitchOn) + "!=" + Tools.OkStr(switchOnInt));
             return wantSwitchOn != switchOnInt;
 		}
         /*

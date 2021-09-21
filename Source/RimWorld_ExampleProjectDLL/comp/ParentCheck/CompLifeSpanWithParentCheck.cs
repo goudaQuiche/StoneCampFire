@@ -43,7 +43,7 @@ namespace StoneCampFire
         {
             base.PostSpawnSetup(respawningAfterLoad);
             SetComp();
-            if (MyDebug) Log.Warning(parent.Label + " spawned");
+            //if (MyDebug) Log.Warning(parent.Label + " spawned");
         }
 
         public void MyTick(int tickNum)
@@ -57,11 +57,11 @@ namespace StoneCampFire
                 return;
             }
 
-            if (MyDebug) Log.Warning(parent.Label + " is legit");
+            //if (MyDebug) Log.Warning(parent.Label + " is legit");
 
             if (age >= Props.lifespanTicks)
             {
-                if (MyDebug) Log.Warning(parent.Label + " may die there");
+                //if (MyDebug) Log.Warning(parent.Label + " may die there");
 
                 if (compExtinguishable.SwitchIsOn && compLightableRefuelable.HasFuel)
                 {

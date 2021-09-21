@@ -51,13 +51,13 @@ namespace StoneCampFire
 
             if (compExtinguishable.IsMediumFire)
             {
-                if (compExtinguishable.MyDebug) Log.Warning("IsMediumFire");
+                //if (compExtinguishable.MyDebug) Log.Warning("IsMediumFire");
                 FireMediumGraphic.Draw(drawPos, Rot4.North, parent, .8f);
                 return;
             }
             else if(compExtinguishable.IsLowFire)
             {
-                if (compExtinguishable.MyDebug) Log.Warning("IsLowFire");
+                //if (compExtinguishable.MyDebug) Log.Warning("IsLowFire");
                 FireLowGraphic.Draw(drawPos, Rot4.North, parent, .6f);
                 return;
             }

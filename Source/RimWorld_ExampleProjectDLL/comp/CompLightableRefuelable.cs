@@ -119,7 +119,7 @@ namespace StoneCampFire
                 return;
 
             //Log.Warning("7", true);
-            if(MyDebug) Log.Warning("every5sec");
+            //if(MyDebug) Log.Warning("every5sec");
 
             // raining, chances to extinguish
             if (extinguishableComp.RainVulnerable)

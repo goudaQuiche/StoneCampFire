@@ -15,9 +15,19 @@ namespace StoneCampFire
         {
             get
             {
-                return
-                    (extinguishComp != null && extinguishComp.SwitchIsOn) &&
-                    (lightableRefuelableComp != null && lightableRefuelableComp.HasFuel);
+                if( lightableRefuelableComp == null || !lightableRefuelableComp.HasFuel)
+                {
+                    Log.Warning("firecamp has no fuel");
+                }
+
+                if (extinguishComp == null || !extinguishComp.SwitchIsOn)
+                {
+                    Log.Warning("firecamp is off");
+                    return false;
+                }
+
+                Log.Warning("campfire is usable for bills");
+                return true;
             }
         }
 
@@ -35,11 +45,12 @@ namespace StoneCampFire
 			
 			lightableRefuelableComp.Notify_UsedThisTick();
 		}
-
+        /*
         public Building_CampFire()
         {
-            this.billStack = new BillStack(this);
+            billStack = new BillStack(this);
         }
+        */
 
     }
 }
