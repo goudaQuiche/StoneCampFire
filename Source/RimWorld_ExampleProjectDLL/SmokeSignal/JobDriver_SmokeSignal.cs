@@ -7,7 +7,6 @@ using Verse.AI;
 namespace StoneCampFire
 {
     public class JobDriver_SmokeSignal : JobDriver
-    //public class JobDriver_Extinguish : JobDriver_SingleInteraction
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
@@ -29,7 +28,19 @@ namespace StoneCampFire
                 CompSmokeSignalComms comp = (MovingPawn.actor.jobs.curJob.GetTarget(TargetIndex.A).Thing).TryGetComp<CompSmokeSignalComms>();
                 return !comp.CanSmokeSignalNow;
             });
-            yield return Toils_General.WaitWith(TargetIndex.A, 180, useProgressBar: true);
+            yield return 
+                Toils_General.WaitWith(TargetIndex.A, 360, useProgressBar: true)
+                .WithEffect(MyDefs.Smokejoint, TargetIndex.A);
+
+            /*
+            Toil spawnSmoke = new Toil();
+            spawnSmoke.tickAction = delegate
+            {
+                Pawn actor = spawnSmoke.actor;
+                if (actor.IsHashIntervalTick(50))
+                    FleckMaker.ThrowSmoke(TargetA.CenterVector3, actor.Map, 1);
+            };
+            */
             yield return new Toil
             {
                 initAction = () =>

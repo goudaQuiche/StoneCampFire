@@ -16,6 +16,8 @@ namespace StoneCampFire
         public static JobDef ExtinguishJobDef => DefDatabase<JobDef>.GetNamed("ExtinguishCampFire");
         public static JobDef SmokeSignalJobDef => DefDatabase<JobDef>.GetNamed("UseSmokeSignal");
 
+        public static EffecterDef Smokejoint => DefDatabase<EffecterDef>.GetNamed("Smoke_Joint");
+
         public static SoundDef CampFireExtinguishSound = SoundDef.Named("CampFireExtinguish");
         public static SoundDef CampFireLightSound= SoundDef.Named("CampFireLight");
     }
