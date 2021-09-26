@@ -49,6 +49,9 @@
     <Compile Include="comp\ParentCheck\CompProperties_LifeSpanWithParentCheck.cs" />
     <Compile Include="Graphic_Flicker\MyGraphic_Flicker.cs" />
     <Compile Include="MyDefs.cs" />
+    <Compile Include="SmokeSignal\CompSmokeSignalComms.cs" />
+    <Compile Include="SmokeSignal\CompProperties_SmokeSignalComms.cs" />
+    <Compile Include="SmokeSignal\JobDriver_SmokeSignal.cs" />
     <Compile Include="work\JobDriver_Extinguish.cs" />
     <Compile Include="ExtinguishUtility.cs" />
     <Compile Include="ModCompatibilityCheck.cs" />

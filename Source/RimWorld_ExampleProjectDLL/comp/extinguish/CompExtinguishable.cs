@@ -48,6 +48,7 @@ namespace StoneCampFire
 
         public bool IsMediumFire => compFuel == null ? false : Props.mediumFuelFireRange.Includes(compFuel.FuelPercentOfMax);
         public bool IsLowFire => compFuel == null ? false : Props.lowFuelFireRange.Includes(compFuel.FuelPercentOfMax);
+        public bool IsHighFire => compFuel == null ? false : !IsLowFire && !IsMediumFire;
 
         public ThingDef GetGlowerDef()
         {
