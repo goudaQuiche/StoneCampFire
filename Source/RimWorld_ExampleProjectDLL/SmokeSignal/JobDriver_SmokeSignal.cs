@@ -34,7 +34,7 @@ namespace StoneCampFire
             {
                 initAction = () =>
                 {
-                    CompSmokeSignalComms comp = (pawn.jobs.curJob.GetTarget((TargetIndex)1).Thing).TryGetComp<CompSmokeSignalComms>();
+                    CompSmokeSignalComms comp = (pawn.jobs.curJob.GetTarget(TargetIndex.A).Thing).TryGetComp<CompSmokeSignalComms>();
                     
                     if (comp.CanSmokeSignalNow)
                     {

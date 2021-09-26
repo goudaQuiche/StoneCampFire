@@ -118,6 +118,10 @@
 			<li>
 				<compClass>CompGatherSpot</compClass>
 			</li>
+			<li Class="StoneCampFire.CompProperties_SmokeSignalComms">
+				<debug>true</debug>
+			</li>
+			<!--
 			<li Class="CompProperties_MeditationFocus">
 				<statDef>MeditationFocusStrength</statDef>
 				<focusTypes>
@@ -145,11 +149,14 @@
 					</li>
 				</offsets>
 			</li>
+			-->
 			<!-- vanilla glow is needed for meditation focus -->
+			<!--
 			<li Class="CompProperties_Glower">
 				<glowRadius>1</glowRadius>
 				<glowColor>(252,187,113,0)</glowColor>
 			</li>
+			-->
 		</comps>
 
 		<designationCategory>Temperature</designationCategory>

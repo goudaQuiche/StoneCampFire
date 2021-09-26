@@ -26,7 +26,7 @@ namespace StoneCampFire
                     return false;
                 }
 
-                Log.Warning("campfire is usable for bills");
+                //Log.Warning("campfire is usable for bills");
                 return true;
             }
         }

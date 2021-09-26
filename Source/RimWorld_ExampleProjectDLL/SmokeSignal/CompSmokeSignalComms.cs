@@ -1,20 +1,35 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
 
 namespace  StoneCampFire
 {
-    public class CompSmokeSignalComms : CompGlower
+    public class CompSmokeSignalComms : ThingComp
     {
         
         protected CompExtinguishable stoneComp;
         protected CompRefuelable regularComp;
 
-        private new CompProperties_SmokeSignalComms Props => (CompProperties_SmokeSignalComms)props;
+        private CompProperties_SmokeSignalComms Props => (CompProperties_SmokeSignalComms)props;
         private bool MyDebug => Props.debug;
 
-        public bool IsOutside => parent.GetRoom().OutdoorsForWork;
+        public bool IsOutside
+        {
+            get
+            {
+                if (parent.GetRoom() is Room room)
+                {
+                    if (MyDebug) Log.Warning("room exists but outdoors:" + room.OutdoorsForWork);
+                    return room.OutdoorsForWork;
+                }
+
+                return true;
+            }
+            
+        }
+
         private bool HasStoneCampfireComp => stoneComp != null;
         private bool HasRegularCampfireComp => regularComp != null;
 
@@ -27,7 +42,10 @@ namespace  StoneCampFire
                 
                 if (HasStoneCampfireComp)
                 {
-                    return stoneComp.SwitchIsOn && stoneComp.IsHighFire && IsOutside;
+                    if(stoneComp.parent is Building_CampFire campFire)
+                    {
+                        return campFire.CurrentlyUsableForBills && IsOutside;
+                    }
                 }
                 else if(HasRegularCampfireComp)
                 {
@@ -35,7 +53,6 @@ namespace  StoneCampFire
                 }
 
                 return false;
-                    
             }
         }
         
@@ -58,18 +75,18 @@ namespace  StoneCampFire
             base.PostSpawnSetup(respawningAfterLoad);
         }
 
-        private void UseAct(Pawn myPawn, ICommunicable commTarget)
+        private void GiveSmokeSignalJob(Pawn myPawn, ICommunicable newCommTarget)
         {
             var job = new Job(MyDefs.SmokeSignalJobDef, parent)
             {
-                commTarget = commTarget
+                commTarget = newCommTarget
             };
             myPawn.jobs.TryTakeOrderedJob(job, 0);
 
             PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDefOf.OpeningComms, KnowledgeAmount.Total);
         }
 
-        public IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
+        public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn myPawn)
         {
             if (!myPawn.CanReach(parent, PathEndMode.InteractionCell, Danger.Some))
             {
@@ -102,7 +119,7 @@ namespace  StoneCampFire
 
             if (!CanSmokeSignalNow)
             {
-                Log.Error(myPawn + " could not use signal fire for unknown reason.");
+                //Log.Error(myPawn + " could not use smoke signal.");
                 return new List<FloatMenuOption>
                 {
                     new FloatMenuOption("Cannot use now", null)
@@ -110,25 +127,13 @@ namespace  StoneCampFire
             }
 
             var list = new List<FloatMenuOption>();
-            foreach (ICommunicable commTarget in Find.FactionManager.AllFactionsVisibleInViewOrder)
+            foreach (ICommunicable commTarget in GetSmokeSignalTargets())
             {
                 var localCommTarget = commTarget;
                 var text = "CallOnRadio".Translate(localCommTarget.GetCallLabel());
 
                 if (localCommTarget is Faction faction)
                 {
-                    if (faction.IsPlayer)
-                    {
-                        continue;
-                    }
-
-                    /*
-                    if (ModStuff.Settings.LimitContacts && faction.def.categoryTag != "Tribal")
-                    {
-                        continue;
-                    }
-                    */
-
                     if (!IsLeaderAvailable(faction))
                     {
                         string str = faction.leader != null
@@ -147,12 +152,7 @@ namespace  StoneCampFire
                         return;
                     }
 
-                    var job = new Job(MyDefs.SmokeSignalJobDef, parent)
-                    {
-                        commTarget = localCommTarget
-                    };
-                    myPawn.jobs.TryTakeOrderedJob(job, 0);
-                    PlayerKnowledgeDatabase.KnowledgeDemonstrated(ConceptDefOf.OpeningComms, (KnowledgeAmount)6);
+                    GiveSmokeSignalJob(myPawn, commTarget);
                 }
 
                 list.Add(FloatMenuUtility.DecoratePrioritizedTask(
@@ -160,6 +160,15 @@ namespace  StoneCampFire
             }
 
             return list;
+        }
+
+        public IEnumerable<ICommunicable> GetSmokeSignalTargets()
+        {
+            return Find.FactionManager.AllFactionsVisibleInViewOrder.Where(
+                (Faction f) => 
+                !f.IsPlayer && 
+                f.def.categoryTag == "Tribal"
+            );
         }
 
         public static bool IsLeaderAvailable(Faction faction)
