@@ -1,1 +1,4 @@
 *.lock
+[Tt]emp*.*
+Source/.vs
+Source/RimWorld_ExampleProjectDLL/obj
