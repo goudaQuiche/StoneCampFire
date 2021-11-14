@@ -30,8 +30,9 @@
 		<fillPercent>0</fillPercent>
 		<coversFloor>false</coversFloor>
 
+		
 		<selectable>false</selectable>
-		<neverMultiSelect>false</neverMultiSelect>
+		<neverMultiSelect>true</neverMultiSelect>
 
 		<building>
 			<ai_chillDestination>false</ai_chillDestination>
@@ -60,7 +61,7 @@
 			</li>
 			<li Class="StoneCampFire.CompProperties_LifeSpanWithParentCheck">
 				<lifespanTicks>180</lifespanTicks>
-				<debug>true</debug>
+				<!-- <debug>true</debug> -->
 			</li>
 		</comps>
 	</ThingDef>
@@ -78,7 +79,7 @@
 			</li>
 			<li Class="StoneCampFire.CompProperties_LifeSpanWithParentCheck">
 				<lifespanTicks>180</lifespanTicks>
-				<debug>true</debug>
+				<!-- <debug>true</debug> -->
 			</li>
 		</comps>
 	</ThingDef>
@@ -96,7 +97,7 @@
 			</li>
 			<li Class="StoneCampFire.CompProperties_LifeSpanWithParentCheck">
 				<lifespanTicks>180</lifespanTicks>
-				<debug>true</debug>
+				<!-- <debug>true</debug> -->
 			</li>
 		</comps>
 	</ThingDef>

@@ -88,7 +88,7 @@ namespace  StoneCampFire
         
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            stoneComp = this.parent.GetComp<CompExtinguishable>();
+            stoneComp = parent.GetComp<CompExtinguishable>();
             if (stoneComp == null && MyDebug)
                 Log.Warning("could not find extinguish comp");
 

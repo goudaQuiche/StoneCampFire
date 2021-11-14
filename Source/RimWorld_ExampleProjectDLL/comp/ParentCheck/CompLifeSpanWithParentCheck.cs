@@ -27,6 +27,7 @@ namespace StoneCampFire
         public void SetParentBuilding(Building b)
         {
             parentBuilding = b;
+            parent.SetFaction(parentBuilding.Faction);
             SetComp();
         }
 

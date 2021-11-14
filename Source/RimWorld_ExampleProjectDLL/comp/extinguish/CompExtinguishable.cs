@@ -168,58 +168,20 @@ namespace StoneCampFire
             //if(MyDebug) Log.Warning("wantSwitchOn: " + Tools.OkStr(wantSwitchOn) + "!=" + Tools.OkStr(switchOnInt));
             return wantSwitchOn != switchOnInt;
 		}
-        /*
-        void MySetCompGlower()
-        {
-            ToolsBuilding.SetCompGlower(parent, compFuel.FuelPercentOfMax, true);
-        }
-        void MyUnsetCompGlower()
-        {
-            ToolsBuilding.SetCompGlower(parent, compFuel.FuelPercentOfMax, false);
-        }
-        */
 
         void ToggleFireOverlay()
         {
             ToolsBuilding.ToggleFireOverlay(parent, myMap);
         }
-        void SetFireOverlay(bool value=true)
+        void SetFireOverlay(bool value = true)
         {
             ToolsBuilding.SetFireOverlay(parent, myMap, value);
         }
 
-        void MyUnsetCompHeatPusher()
-        {
-            ToolsBuilding.UnsetCompHeatPusher(parent, myMap);
-        }
-
         void UpdateComps()
         {
-            //Log.Warning("Trying to change comp: "+Tools.OkStr(SwitchIsOn), true);
-
-            /*
-            if (SwitchIsOn)
-            {
-                if(MyDebug) Log.Warning("[ON]Trying to set glow: " + Tools.OkStr(SwitchIsOn));
-                //Glower
-                MySetCompGlower();
-            }
-            else
-            {
-                if(MyDebug)Log.Warning("[OFF]Trying to set glow: " + Tools.OkStr(SwitchIsOn));
-                //Glower
-                MyUnsetCompGlower();
-            }
-            */
-
-            //heat
-            //MySetCompHeatPusher();
-            // gather
             ToolsBuilding.ToggleCompGatherSpot(parent, true, SwitchIsOn);
-            //fire overlay
             SetFireOverlay(SwitchIsOn);
-            //ToggleFireOverlay();
-
         }
 
         public void DoFlick(bool active = true)
@@ -257,7 +219,27 @@ namespace StoneCampFire
 
         }
 
-		public void ResetToOn()
+        public override void PostDestroy(DestroyMode mode, Map previousMap)
+        {
+            if (SwitchIsOn && mode == DestroyMode.KillFinalize)
+            {
+                int spreadNum;
+
+                if (IsMediumFire)
+                    spreadNum = 2;
+                else if (IsLowFire)
+                    spreadNum = 1;
+                else
+                    spreadNum = 3;
+
+                for (int i = 0; i < spreadNum; i++)
+                    ToolsFire.TrySpread(buildingPos.ToIntVec3(), previousMap);
+            }
+
+            base.PostDestroy(mode, previousMap);
+        }
+
+        public void ResetToOn()
 		{
 			switchOnInt = true;
 			wantSwitchOn = true;

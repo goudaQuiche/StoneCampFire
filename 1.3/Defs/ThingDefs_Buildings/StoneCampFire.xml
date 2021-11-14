@@ -38,6 +38,9 @@
 			<WorkTableWorkSpeedFactor>0.6</WorkTableWorkSpeedFactor>
 			<MeditationFocusStrength>0.0</MeditationFocusStrength>
 		</statBases>
+		
+		<useHitPoints>True</useHitPoints>
+		
 		<selectable>true</selectable>
 
 		<stuffCategories>

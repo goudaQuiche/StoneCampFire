@@ -143,7 +143,7 @@ namespace  StoneCampFire
                 };
             }
 
-            if (!Tools.IsPawnTribal(myPawn))
+            if (!myPawn.IsPawnTribal())
             {
                 return new List<FloatMenuOption>
                 {
@@ -151,7 +151,8 @@ namespace  StoneCampFire
                         "StoneCampfire_PawnNoTribal".Translate(myPawn.LabelShort), null)
                 };
             }
-            
+
+
 
             if (!CanSmokeSignalNow(out string reason))
             {

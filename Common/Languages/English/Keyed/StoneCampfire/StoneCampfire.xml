@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-	<StoneCampfire_PawnNoTribal>{0} is not tribal</StoneCampfire_PawnNoTribal>
+	<StoneCampfire_PawnNoTribal>{0} does not have tribal origins</StoneCampfire_PawnNoTribal>
 
     <StoneCampfire_NoSpawned>Building is not spawned</StoneCampfire_NoSpawned>
 	<StoneCampfire_NotPlayerFaction>Building does not belong to player</StoneCampfire_NotPlayerFaction>

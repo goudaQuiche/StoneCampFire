@@ -8,9 +8,6 @@ namespace StoneCampFire
     public class ToolsBuilding
     {
 
-        public enum Link { Orphan = 0, Linked = 1 };
-        public static string[] LinkLabel = { "Orphan", "Linked" };
-
         public static bool CheckBuilding(Building building)
         {
             if (building == null || building.Map == null || building.Position == null)
@@ -35,9 +32,10 @@ namespace StoneCampFire
             if (comp is CompLightableFireOverlay)
             {
                     comp.Toggle();
+                return;
             }
-            else
-                Log.Warning("should have found a CompFireOverlay but no CompFireOverlay found");
+            
+            Log.Warning("should have found a CompFireOverlay but no CompFireOverlay found");
         }
         public static void SetFireOverlay(Thing t, Map map, bool value = true)
         {
@@ -46,9 +44,10 @@ namespace StoneCampFire
             {
                 //Log.Warning("Trying to set fire overlay:" + value, true);
                 comp.SetBurn(value);
+                return;
             }
-            else
-                Log.Warning("should have found a CompFireOverlay but no CompFireOverlay found");
+            
+            Log.Warning("should have found a CompFireOverlay but no CompFireOverlay found");
         }
         public static void ToggleCompGatherSpot(Thing t, bool force = false, bool value = false)
         {
@@ -59,9 +58,11 @@ namespace StoneCampFire
                     comp.Active = false;
                 else
                     comp.Active = value;
+
+                return;
             }
-            else
-                Log.Warning("should have found a CompGatherSpot but no CompGatherSpot found");
+            
+            Log.Warning("should have found a CompGatherSpot but no CompGatherSpot found");
         }
     }
 }
