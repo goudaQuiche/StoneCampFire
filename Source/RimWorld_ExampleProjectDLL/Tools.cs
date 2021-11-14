@@ -7,6 +7,11 @@ namespace StoneCampFire
 {
     public class Tools
     {
+        public static bool IsPawnTribal(Pawn pawn)
+        {
+            return pawn.def.techLevel == TechLevel.Undefined || pawn.def.techLevel == TechLevel.Animal || pawn.def.techLevel == TechLevel.Neolithic;
+        }
+
         public static bool TwoTicksOneTrue(int period = 60, bool debug = false)
         {
             if(debug)Log.Warning("°°°°°°2t1true" + (int)((Time.realtimeSinceStartup * 100) % period));
@@ -87,23 +92,27 @@ namespace StoneCampFire
         }
 
 
-    public static string CapacityString(float capacity, float capacityMax)
+        public static string CapacityString(float capacity, float capacityMax)
         {
             string buffer = string.Empty;
             buffer = capacity + " / " + capacityMax;
             return (buffer);
         }
+
         public static bool CapacityOverusing(float capacity, float capacityMax)
         {
             return (capacity > capacityMax);
         }
+
         public static bool CapacityUsing(float capacity, float noActivityValue=0)
         {
             return (capacity != noActivityValue);
         }
+
         private static void CapacitySet(float capacity, float value) {
             capacity = value;
         }
+
         public static void CapacityReset(float capacity, float noActivityValue = 0)
         {
             CapacitySet(capacity, noActivityValue);

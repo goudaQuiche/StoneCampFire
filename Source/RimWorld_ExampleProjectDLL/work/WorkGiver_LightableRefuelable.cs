@@ -22,7 +22,7 @@ namespace StoneCampFire
             }
         }
         */
-        public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForDef(MyDefs.MyBuilding);
+        public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForDef(MyDefs.StoneCampfireDef);
 
 
         public override PathEndMode PathEndMode => PathEndMode.Touch;

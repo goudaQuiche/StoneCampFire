@@ -59,7 +59,7 @@
 		<placeWorkers>
 			<li>PlaceWorker_PreventInteractionSpotOverlap</li>
 			<li>PlaceWorker_Heater</li>
-			<li>PlaceWorker_MeditationOffsetBuildingsNear</li>
+			<!-- <li>PlaceWorker_MeditationOffsetBuildingsNear</li> -->
 		</placeWorkers>
 		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
 

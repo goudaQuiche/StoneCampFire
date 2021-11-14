@@ -5,4 +5,10 @@
 		<driverClass>StoneCampFire.JobDriver_SmokeSignal</driverClass>
 		<reportString>sending smoke signals.</reportString>
 	</JobDef>
+	
+		<JobDef>
+		<defName>UseApparelSmokeSignal</defName>
+		<driverClass>StoneCampFire.JobDriver_ApparelSmokeSignal</driverClass>
+		<reportString>sending smoke signals.</reportString>
+	</JobDef>
 </Defs>

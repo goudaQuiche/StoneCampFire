@@ -9,7 +9,7 @@ namespace StoneCampFire
 {
     public class WorkGiverExtinguish : WorkGiver_Scanner//, WorkGiver
     {
-        public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForDef(MyDefs.MyBuilding);
+        public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForDef(MyDefs.StoneCampfireDef);
         public override PathEndMode PathEndMode => PathEndMode.InteractionCell;
         public override Danger MaxPathDanger(Pawn pawn) => Danger.Deadly;
 
@@ -24,7 +24,7 @@ namespace StoneCampFire
             List<Building> allBuildingsColonist = pawn.Map.listerBuildings.allBuildingsColonist;
             for (int i = 0; i < allBuildingsColonist.Count; i++)
             {
-                if (allBuildingsColonist[i].def == MyDefs.MyBuilding)
+                if (allBuildingsColonist[i].def == MyDefs.StoneCampfireDef)
                 {
                     CompPowerTrader comp = allBuildingsColonist[i].GetComp<CompPowerTrader>();
                     if (comp == null || comp.PowerOn)

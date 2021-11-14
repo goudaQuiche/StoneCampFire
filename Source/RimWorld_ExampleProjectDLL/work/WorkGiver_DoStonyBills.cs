@@ -10,7 +10,7 @@ namespace StoneCampFire
 		{
             //Log.Warning("ok JobOnThing");
 
-            if (thing.def != MyDefs.MyBuilding)
+            if (thing.def != MyDefs.StoneCampfireDef)
                 return null;
             //Log.Warning("ok def");
 

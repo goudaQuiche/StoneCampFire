@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<StoneCampfire_PawnNoTribal>{0} is not tribal</StoneCampfire_PawnNoTribal>
+
+    <StoneCampfire_NoSpawned>Building is not spawned</StoneCampfire_NoSpawned>
+	<StoneCampfire_NotPlayerFaction>Building does not belong to player</StoneCampfire_NotPlayerFaction>
+	<StoneCampfire_NotOutside>Building is not outside</StoneCampfire_NotOutside>
+	<StoneCampfire_Roofed>Building is unusable due to roof</StoneCampfire_Roofed>
+	<StoneCampfire_Unlit>Building is not burning</StoneCampfire_Unlit>
+	
+	<StoneCampfire_Unmanaged>Building is not managed by mod</StoneCampfire_Unmanaged>
+	
+</LanguageData>

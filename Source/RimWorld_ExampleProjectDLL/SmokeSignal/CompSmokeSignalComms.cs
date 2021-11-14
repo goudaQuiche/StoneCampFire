@@ -33,27 +33,52 @@ namespace  StoneCampFire
         private bool HasStoneCampfireComp => stoneComp != null;
         private bool HasRegularCampfireComp => regularComp != null;
 
-        public bool CanSmokeSignalNow
+        public bool CanSmokeSignalNow(out string reason)
         {
-            get
+            if (!parent.Spawned)
             {
-                if (!parent.Spawned) 
-                    return false;
-                
-                if (HasStoneCampfireComp)
-                {
-                    if(stoneComp.parent is Building_CampFire campFire)
-                    {
-                        return campFire.CurrentlyUsableForBills && IsOutside;
-                    }
-                }
-                else if(HasRegularCampfireComp)
-                {
-                    return regularComp.HasFuel && IsOutside;
-                }
-
+                reason = "StoneCampfire_NoSpawned".Translate();
                 return false;
             }
+                
+
+            if (parent.Faction != null && parent.Faction != Faction.OfPlayer)
+            {
+                reason = "StoneCampfire_NotPlayerFaction".Translate();
+                return false;
+            }
+                
+
+            if (!IsOutside)
+            {
+                reason = "StoneCampfire_NotOutside".Translate();
+                return false;
+            }
+                
+
+            if (parent.Position.Roofed(parent.Map))
+            {
+                reason = "StoneCampfire_Roofed".Translate();
+                return false;
+            }
+                
+
+            if (HasStoneCampfireComp)
+            {
+                if (stoneComp.parent is Building_CampFire campFire)
+                {
+                    reason = "StoneCampfire_Unlit".Translate();
+                    return campFire.CurrentlyUsableForBills;
+                }
+            }
+            else if (HasRegularCampfireComp)
+            {
+                reason = "StoneCampfire_Unlit".Translate();
+                return regularComp.HasFuel;
+            }
+
+            reason = "StoneCampfire_Unmanaged".Translate();
+            return false;
         }
         
         public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -77,6 +102,7 @@ namespace  StoneCampFire
 
         private void GiveSmokeSignalJob(Pawn myPawn, ICommunicable newCommTarget)
         {
+            //var job = new Job(MyDefs.ApparelSmokeSignalJobDef, parent)
             var job = new Job(MyDefs.SmokeSignalJobDef, parent)
             {
                 commTarget = newCommTarget
@@ -117,12 +143,22 @@ namespace  StoneCampFire
                 };
             }
 
-            if (!CanSmokeSignalNow)
+            if (!Tools.IsPawnTribal(myPawn))
+            {
+                return new List<FloatMenuOption>
+                {
+                    new FloatMenuOption(
+                        "StoneCampfire_PawnNoTribal".Translate(myPawn.LabelShort), null)
+                };
+            }
+            
+
+            if (!CanSmokeSignalNow(out string reason))
             {
                 //Log.Error(myPawn + " could not use smoke signal.");
                 return new List<FloatMenuOption>
                 {
-                    new FloatMenuOption("Cannot use now", null)
+                    new FloatMenuOption(reason, null)
                 };
             }
 

@@ -51,7 +51,8 @@
     <Compile Include="MyDefs.cs" />
     <Compile Include="SmokeSignal\CompSmokeSignalComms.cs" />
     <Compile Include="SmokeSignal\CompProperties_SmokeSignalComms.cs" />
-    <Compile Include="SmokeSignal\JobDriver_SmokeSignal.cs" />
+    <Compile Include="work\SmokeSignal\JobDriver_ApparelSmokeSignal.cs" />
+    <Compile Include="work\SmokeSignal\JobDriver_SmokeSignal.cs" />
     <Compile Include="work\JobDriver_Extinguish.cs" />
     <Compile Include="ExtinguishUtility.cs" />
     <Compile Include="ModCompatibilityCheck.cs" />
