@@ -2,8 +2,10 @@
 <Defs>
 
 	<ThingDef Name="StonyCampFire_IntangibleBuildingBase" ParentName="BuildingBase" Abstract="True">
-		<thingClass>Building</thingClass>
-		<category>Building</category>
+		<!-- <thingClass>Building</thingClass> -->
+		<thingClass>ThingWithComps</thingClass>
+		<!-- <category>Building</category> -->
+		<category>Mote</category>
 
 		<graphicData>
 			<texPath>Things/Building/emptyTex</texPath>
@@ -13,6 +15,7 @@
 
 		<scatterableOnMapGen>false</scatterableOnMapGen>
 		<useHitPoints>false</useHitPoints>
+		<!-- <destroyable>false</destroyable> -->
 
 		<size>(1,1)</size>
 
@@ -29,14 +32,13 @@
 		<castEdgeShadows>false</castEdgeShadows>
 		<fillPercent>0</fillPercent>
 		<coversFloor>false</coversFloor>
-
 		
 		<selectable>false</selectable>
 		<neverMultiSelect>true</neverMultiSelect>
 
 		<building>
 			<ai_chillDestination>false</ai_chillDestination>
-			<isInert>true</isInert>
+			<isInert>false</isInert>
 			<isEdifice>false</isEdifice>
 			<artificialForMeditationPurposes>false</artificialForMeditationPurposes>
 			<claimable>false</claimable>

@@ -80,13 +80,16 @@
 					</thingDefs>
 				</fuelFilter>
 				<consumeFuelOnlyWhenUsed>false</consumeFuelOnlyWhenUsed>
-				<!-- <destroyOnNoFuel>false</destroyOnNoFuel> -->
+				
+				<targetFuelLevelConfigurable>true</targetFuelLevelConfigurable>
+				
+				<destroyOnNoFuel>false</destroyOnNoFuel>
 				<initialFuelPercent>0</initialFuelPercent>
 				<showAllowAutoRefuelToggle>true</showAllowAutoRefuelToggle>
 			</li>
 
 			<li Class="StoneCampFire.CompProperties_Extinguishable">
-				<debug>true</debug>
+				<!-- <debug>true</debug> -->
 			</li>
 
 			<!--

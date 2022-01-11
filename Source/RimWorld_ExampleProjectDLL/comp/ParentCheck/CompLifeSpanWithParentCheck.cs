@@ -27,7 +27,7 @@ namespace StoneCampFire
         public void SetParentBuilding(Building b)
         {
             parentBuilding = b;
-            parent.SetFaction(parentBuilding.Faction);
+            //parent.SetFaction(parentBuilding.Faction);
             SetComp();
         }
 
@@ -99,7 +99,8 @@ namespace StoneCampFire
 
         protected void Expire()
         {
-            parent.Destroy(DestroyMode.KillFinalize);
+            parent.DeSpawn(DestroyMode.KillFinalize);
+            //parent.Destroy(DestroyMode.KillFinalize);
         }
     }
 }

@@ -40,13 +40,13 @@ namespace StoneCampFire
             bool RegularNeeded = IsRegular != WasRegular;
             bool MediumNeeded = IsMedium != WasMedium;
             bool LowNeeded = IsLow != WasLow;
-            bool NeedToSpawn = RegularNeeded || MediumNeeded || LowNeeded;
+            bool NeedToGlowSpawn = RegularNeeded || MediumNeeded || LowNeeded;
 
-            if(NeedToSpawn)
+            if(NeedToGlowSpawn)
             {
-                if(extinguishableComp.GetBuildingGlower() is Building b)
+                if(extinguishableComp.GetGlowMote() is ThingWithComps glowMote)
                 {
-                    b.Destroy(DestroyMode.KillFinalize);
+                    glowMote.Destroy(DestroyMode.KillFinalize);
                 }
                 extinguishableComp.SpawnIfNoGlow();
             }
@@ -169,7 +169,7 @@ namespace StoneCampFire
         public override void Initialize(CompProperties props)
         {
             base.Initialize(props);
-            Refuel(Props.fuelCapacity);
+            //Refuel(Props.fuelCapacity);
             //this.fuel = this.Props.fuelCapacity;
 
             extinguishableComp = parent.GetComp<CompExtinguishable>();

@@ -130,15 +130,15 @@ namespace StoneCampFire
             //ChangeComps();
         }
 
-        public Thing GetBuildingGlower()
+        public Thing GetGlowMote()
         {
-            if (building.Position.GetFirstThing(myMap, MyDefs.RegularGlower) is Building regularGlower)
+            if (building.Position.GetFirstThing(myMap, MyDefs.RegularGlower) is ThingWithComps regularGlower)
                 return regularGlower;
 
-            if (building.Position.GetFirstThing(myMap, MyDefs.MediumGlower) is Building mediumGlower)
+            if (building.Position.GetFirstThing(myMap, MyDefs.MediumGlower) is ThingWithComps mediumGlower)
                 return mediumGlower;
 
-            if (building.Position.GetFirstThing(myMap, MyDefs.LowGlower) is Building lowGlower)
+            if (building.Position.GetFirstThing(myMap, MyDefs.LowGlower) is ThingWithComps lowGlower)
                 return lowGlower;
 
             return null;
@@ -146,7 +146,7 @@ namespace StoneCampFire
 
         public void SpawnIfNoGlow()
         {
-            if (GetBuildingGlower() != null)
+            if (GetGlowMote() != null)
                 return;
 
             Thing t = ThingMaker.MakeThing(GetGlowerDef());
@@ -194,11 +194,13 @@ namespace StoneCampFire
                 mySound.PlayOneShot(new TargetInfo(parent.Position, parent.Map, false));
             }
 
+            Vector3 slightlyAbove = buildingPos + new Vector3(0, 0, .6f);
+
             // turning off
             if (SwitchIsOn)
             {
-                FleckMaker.ThrowSmoke(buildingPos, myMap, compFuel.FuelPercentOfMax);
-                if (GetBuildingGlower() is ThingWithComps glower)
+                FleckMaker.ThrowSmoke(slightlyAbove, myMap, compFuel.FuelPercentOfMax);
+                if (GetGlowMote() is ThingWithComps glower)
                 {
                     glower.BroadcastCompSignal(SentSignal);
                 }
@@ -206,7 +208,7 @@ namespace StoneCampFire
             // turning on
             else
             {
-                FleckMaker.ThrowMicroSparks(buildingPos, myMap);
+                FleckMaker.ThrowMicroSparks(slightlyAbove, myMap);
                 SpawnIfNoGlow();
             }
             if (MyDebug) Log.Warning("Sending " + SentSignal + " signal");
