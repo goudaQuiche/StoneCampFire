@@ -44,21 +44,21 @@ namespace  StoneCampFire
 
             if (parent.Faction != null && parent.Faction != Faction.OfPlayer)
             {
-                reason = "StoneCampfire_NotPlayerFaction".Translate();
+                reason = "StoneCampfire_NotPlayerFaction".Translate() + "StoneCampfire_Impossible".Translate();
                 return false;
             }
                 
 
             if (!IsOutside)
             {
-                reason = "StoneCampfire_NotOutside".Translate();
+                reason = "StoneCampfire_NotOutside".Translate() + "StoneCampfire_Impossible".Translate();
                 return false;
             }
                 
 
             if (parent.Position.Roofed(parent.Map))
             {
-                reason = "StoneCampfire_Roofed".Translate();
+                reason = "StoneCampfire_Roofed".Translate() + "StoneCampfire_Impossible".Translate();
                 return false;
             }
                 
@@ -67,13 +67,13 @@ namespace  StoneCampFire
             {
                 if (stoneComp.parent is Building_CampFire campFire)
                 {
-                    reason = "StoneCampfire_Unlit".Translate();
+                    reason = "StoneCampfire_Unlit".Translate() + "StoneCampfire_Impossible".Translate();
                     return campFire.CurrentlyUsableForBills;
                 }
             }
             else if (HasRegularCampfireComp)
             {
-                reason = "StoneCampfire_Unlit".Translate();
+                reason = "StoneCampfire_Unlit".Translate() + "StoneCampfire_Impossible".Translate();
                 return regularComp.HasFuel;
             }
 
@@ -148,7 +148,7 @@ namespace  StoneCampFire
                 return new List<FloatMenuOption>
                 {
                     new FloatMenuOption(
-                        "StoneCampfire_PawnNoTribal".Translate(myPawn.LabelShort), null)
+                        "StoneCampfire_PawnNoTribal".Translate(myPawn.LabelShort) + "StoneCampfire_Impossible".Translate(), null)
                 };
             }
 

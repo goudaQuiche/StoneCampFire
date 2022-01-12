@@ -11,9 +11,10 @@
 		<category>Building</category>
 
 		<graphicData>
-			<texPath>Things/Building/StoneCampFire/Full</texPath>
+			<!-- <texPath>Things/Building/StoneCampFire/Full</texPath> -->
+			<texPath>Things/Building/StoneCampfire/StoneCampfire</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<shaderType>CutoutComplex</shaderType>
+			<!-- <shaderType>CutoutComplex</shaderType> -->
 			<drawRotated>false</drawRotated>
 			<allowFlip>false</allowFlip>
 			<damageData>
@@ -32,8 +33,8 @@
 		<fillPercent>0.20</fillPercent>
 
 		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<WorkToBuild>400</WorkToBuild>
+			<MaxHitPoints>80</MaxHitPoints>
+			<WorkToBuild>300</WorkToBuild>
 			<Flammability>0</Flammability>
 			<WorkTableWorkSpeedFactor>0.6</WorkTableWorkSpeedFactor>
 			<MeditationFocusStrength>0.0</MeditationFocusStrength>
@@ -90,14 +91,18 @@
 
 			<li Class="StoneCampFire.CompProperties_Extinguishable">
 				<!-- <debug>true</debug> -->
+				
+				<mediumFuelFireRange>.2~.5</mediumFuelFireRange>
+				<lowFuelFireRange>0~.2</lowFuelFireRange>
+				<maxFuelTargetLevel>true</maxFuelTargetLevel>
 			</li>
 
-			<!--
-			<li Class="CompProperties_Glower">
-				<glowRadius>10</glowRadius>
-				<glowColor>(252,187,113,0)</glowColor>
+			
+			<li Class="StoneCampFire.CompProperties_WoodOverlay">
+				<coalMaterial>Mote_Coal</coalMaterial>
+				<woodLogMaterial>Mote_WoodLogs</woodLogMaterial>
 			</li>
-			-->
+			
 			<li Class="CompProperties_HeatPusher">
 				<compClass>StoneCampFire.CompLightableHeatPusher</compClass>
 				<heatPerSecond>21</heatPerSecond>
@@ -106,35 +111,21 @@
 			<li Class="StoneCampFire.CompProperties_LightableFireOverlay">
 				<fireSize>.85</fireSize>
 				<offset>(0,0,.27)</offset>
-				<!--
-				<textureProbability>
-					<li>
-						<curve>
-							<points>
-								<li>(1,100)</li>
-								<li>(.34,100)</li>
-								<li>(.25,75)</li>
-								<li>(.16,0)</li>
-							</points>
-						</curve>
-					</li>
-				</textureProbability>
-				-->
 			</li>
 			<li>
 				<compClass>CompGatherSpot</compClass>
 			</li>
 			<li Class="StoneCampFire.CompProperties_SmokeSignalComms">
-				<debug>true</debug>
+				<!-- <debug>true</debug> -->
 			</li>
-			<!--
+			
 			<li Class="CompProperties_MeditationFocus">
 				<statDef>MeditationFocusStrength</statDef>
 				<focusTypes>
 					<li>Flame</li>
 				</focusTypes>
 				<offsets>
-					<li Class="FocusStrengthOffset_Lit">
+					<li Class="StoneCampFire.FocusStrengthOffset_LitStoneCampFire">
 						<offset>0.12</offset>
 					</li>
 					<li Class="FocusStrengthOffset_BuildingDefsLit">
@@ -155,7 +146,7 @@
 					</li>
 				</offsets>
 			</li>
-			-->
+			
 			<!-- vanilla glow is needed for meditation focus -->
 			<!--
 			<li Class="CompProperties_Glower">
@@ -181,13 +172,15 @@
 		<inspectorTabs>
 			<li>ITab_Bills</li>
 		</inspectorTabs>
+		
 		<building>
 			<isMealSource>true</isMealSource>
 			<spawnedConceptLearnOpportunity>BillsTab</spawnedConceptLearnOpportunity>
 			<artificialForMeditationPurposes>false</artificialForMeditationPurposes>
 			<destroySound>BuildingDestroyed_Stone_Small</destroySound>
 		</building>
-		<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+		
+		<constructionSkillPrerequisite>3</constructionSkillPrerequisite>
 	</ThingDef>
 
 </Defs>

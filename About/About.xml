@@ -14,9 +14,6 @@
 	- Glows accordingly.
 	- Heats accordingly.
 	- Toggles gather spot accordingly.
-	
-Bugs :
-	- The glow is there even when the fire is not lit, as long as it has fuel
-	- Pawns should be able to cook even when fire is not lit, as long as it has fuel
+
 </description>
 </ModMetaData>

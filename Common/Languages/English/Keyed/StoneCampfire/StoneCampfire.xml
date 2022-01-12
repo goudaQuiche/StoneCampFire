@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 
-	<StoneCampfire_PawnNoTribal>{0} does not have tribal origins</StoneCampfire_PawnNoTribal>
-
+	<StoneCampfire_PawnNoTribal>{0} does not have tribal origins. </StoneCampfire_PawnNoTribal>
+	<StoneCampfire_Impossible>Smoke signals are impossible.</StoneCampfire_Impossible>
     <StoneCampfire_NoSpawned>Building is not spawned</StoneCampfire_NoSpawned>
-	<StoneCampfire_NotPlayerFaction>Building does not belong to player</StoneCampfire_NotPlayerFaction>
-	<StoneCampfire_NotOutside>Building is not outside</StoneCampfire_NotOutside>
-	<StoneCampfire_Roofed>Building is unusable due to roof</StoneCampfire_Roofed>
-	<StoneCampfire_Unlit>Building is not burning</StoneCampfire_Unlit>
+	<StoneCampfire_NotPlayerFaction>Building does not belong to player. </StoneCampfire_NotPlayerFaction>
+	<StoneCampfire_NotOutside>Building is not outside. </StoneCampfire_NotOutside>
+	<StoneCampfire_Roofed>Building is unusable due to roof. </StoneCampfire_Roofed>
+	<StoneCampfire_Unlit>Building is not burning. </StoneCampfire_Unlit>
 	
 	<StoneCampfire_Unmanaged>Building is not managed by mod</StoneCampfire_Unmanaged>
+	
+	<StoneCampfire_lightLabel>Light campfire</StoneCampfire_lightLabel>
+	<StoneCampfire_extinguishLabel>Extinguish campfire</StoneCampfire_extinguishLabel>
+	
+	<StoneCampfire_lightDesc>Order this {0} to be lit. </StoneCampfire_lightDesc>
+	<StoneCampfire_extinguishDesc>Order this {0} to be extinguished. </StoneCampfire_extinguishDesc>
+	<StoneCampfire_doIt>A colonist will come to grant your request.</StoneCampfire_doIt>
+	
 	
 </LanguageData>

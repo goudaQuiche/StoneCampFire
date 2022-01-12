@@ -21,9 +21,8 @@ namespace StoneCampFire
 
         Map myMap = null;
 
-        CompLightableRefuelable compFuel = null;
-        //CompLightableGlower compglow = null;
-        //CompGlower compGlow = null;
+        public CompLightableRefuelable compFuel = null;
+        public bool HasEverBurnt = false;
 
         private bool switchOnInt = true;
 		private bool wantSwitchOn = true;
@@ -43,6 +42,7 @@ namespace StoneCampFire
         public float ExtinguishInRainChance => Props.extinguishInRainChance;
         public bool RainProof => Props.rainProof;
         public bool RainVulnerable => !RainProof;
+
         public bool OxygenLackProof => Props.oxygenLackProof;
         public bool OxygenVulnerable => !OxygenLackProof;
 
@@ -74,6 +74,8 @@ namespace StoneCampFire
 		}
 
         private Texture2D MyCommandTex => ContentFinder<Texture2D>.Get(SwitchIsOn ? Props.commandTextureOff : Props.commandTextureOn, true);
+        private string MyCommandLabel => SwitchIsOn ? Props.commandExtinguishLabelKey.Translate() : Props.commandLitLabelKey.Translate();
+        private TaggedString MyCommandDesc => (SwitchIsOn ? Props.commandExtinguishDescKey.Translate(parent.Label) : Props.commandLitDescKey.Translate(parent.Label)) + Props.commandColonistWillDoItDescKey.Translate();
 
         public bool SwitchIsOn
         {
@@ -124,6 +126,14 @@ namespace StoneCampFire
             myMap = building?.Map;
 
             compFuel = parent.TryGetComp<CompLightableRefuelable>();
+            if (!respawningAfterLoad)
+            {
+                if (compFuel != null && Props.maxFuelTargetLevel )
+                    compFuel.TargetFuelLevel = compFuel.Props.fuelCapacity;
+
+                //wantSwitchOn = false;
+            }
+            
 
             SpawnIfNoGlow();
             //compGlow = parent.TryGetComp<CompGlower>();
@@ -161,7 +171,8 @@ namespace StoneCampFire
 			base.PostExposeData();
 			Scribe_Values.Look<bool>(ref switchOnInt, "switchOn", true, false);
 			Scribe_Values.Look<bool>(ref wantSwitchOn, "wantSwitchOn", true, false);
-		}
+            Scribe_Values.Look<bool>(ref HasEverBurnt, "HasEverBurnt", true, false);
+        }
 
 		public bool WantsFlick()
 		{
@@ -208,6 +219,7 @@ namespace StoneCampFire
             // turning on
             else
             {
+                HasEverBurnt = true;
                 FleckMaker.ThrowMicroSparks(slightlyAbove, myMap);
                 SpawnIfNoGlow();
             }
@@ -274,25 +286,14 @@ namespace StoneCampFire
                 yield return new Command_Toggle
                 {
                     hotKey = KeyBindingDefOf.Command_TogglePower,
-                    //icon = this.CommandTex,
-                    icon = this.MyCommandTex,
-                    defaultLabel = this.Props.commandLabelKey.Translate(),
-                    defaultDesc = this.Props.commandDescKey.Translate(),
+                    icon = MyCommandTex,
+                    defaultLabel = MyCommandLabel,
+                    defaultDesc = MyCommandDesc,
                     isActive = (() => wantSwitchOn),
                     toggleAction = delegate
                     {
                         wantSwitchOn = !wantSwitchOn;
-                        //ExtinguishUtility.UpdateExtinguishDesignation(parent);
                     }
-                    /*
-					isActive = (() => this.$this.wantSwitchOn),
-					toggleAction = delegate
-					{
-						this.$this.wantSwitchOn = !this.$this.wantSwitchOn;
-						FlickUtility.UpdateFlickDesignation(this.$this.parent);
-					}
-                    */
-
                 };
 			}
 		}

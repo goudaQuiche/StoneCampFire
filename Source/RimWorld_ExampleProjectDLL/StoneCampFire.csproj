@@ -47,6 +47,9 @@
     <Compile Include="comp\fireoverlay\CompProperties_LightableFireOverlay.cs" />
     <Compile Include="comp\ParentCheck\CompLifeSpanWithParentCheck.cs" />
     <Compile Include="comp\ParentCheck\CompProperties_LifeSpanWithParentCheck.cs" />
+    <Compile Include="comp\woodOverlay\CompProperties_WoodOverlay.cs" />
+    <Compile Include="comp\woodOverlay\CompWoodOverlay.cs" />
+    <Compile Include="Royalty\FocusStrengthOffset_LitStoneCampFire.cs" />
     <Compile Include="Graphic_Flicker\MyGraphic_Flicker.cs" />
     <Compile Include="MyDefs.cs" />
     <Compile Include="SmokeSignal\CompSmokeSignalComms.cs" />
