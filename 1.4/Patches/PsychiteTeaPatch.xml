@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<success>Normal</success>
+		<xpath>/Defs/ThingDef[defName="PsychiteTea"]/recipeMaker/recipeUsers</xpath>
+		<value>
+			<li>StoneCampfire</li>
+		</value>
+	</Operation>
+</Patch>

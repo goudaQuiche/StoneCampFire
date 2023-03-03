@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<WorkGiverDef>
+		<defName>SmokeSignalWithApparelOnStoneCampfire</defName>
+		<label>smoke signal with apparel on stone campfire</label>
+
+		<giverClass>StoneCampFire.WorkGiver_SmokeSignalWithApparel</giverClass>
+		<workType>Hauling</workType>
+		<verb>send smoke signals</verb>
+		<gerund>sending smoke signals</gerund>
+		<priorityInType>60</priorityInType>
+
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+
+		<prioritizeSustains>true</prioritizeSustains>
+	</WorkGiverDef>
+</Defs>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- coal -->
+	<ThingDef ParentName="MoteBase">
+		<defName>Mote_Coal</defName>
+		<graphicData>
+			<texPath>Things/Building/StoneCampfire/Overlay/Coal</texPath>
+		</graphicData>
+	</ThingDef>
+	
+	<!-- woodLogs -->
+	<ThingDef ParentName="MoteBase">
+		<defName>Mote_WoodLogs</defName>
+		<graphicData>
+			<texPath>Things/Building/StoneCampfire/Overlay/WoodLogs</texPath>
+		</graphicData>
+	</ThingDef>
+
+</Defs>

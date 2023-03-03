@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<SoundDef>
+		<defName>CampFireLight</defName>  
+		<eventNames />  
+		<maxSimultaneous>3</maxSimultaneous>  
+		
+		<subSounds>
+		<li>
+			<onCamera>True</onCamera>      
+			<grains>
+			<li Class="AudioGrain_Clip">
+				<clipPath>Special/Flint</clipPath>
+			</li>
+			</grains>      
+			<volumeRange>
+				<min>50</min>        
+				<max>60</max>
+			</volumeRange>
+		</li>
+		</subSounds>
+	</SoundDef>
+
+		<SoundDef>
+		<defName>CampFireExtinguish</defName>  
+		<eventNames />  
+		<maxSimultaneous>3</maxSimultaneous>  
+		
+		<subSounds>
+		<li>
+			<onCamera>True</onCamera>      
+			<grains>
+			<li Class="AudioGrain_Clip">
+				<clipPath>Special/Extinguish</clipPath>
+			</li>
+			</grains>      
+			<volumeRange>
+				<min>50</min>        
+				<max>60</max>
+			</volumeRange>
+		</li>
+		</subSounds>
+	</SoundDef>
+	
+</Defs>

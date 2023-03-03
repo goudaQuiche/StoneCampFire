@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<success>Normal</success>
+		<xpath>/Defs/ThingDef[defName="Campfire"]/comps</xpath>
+		<value>
+			<li Class="StoneCampFire.CompProperties_SmokeSignalComms">
+				<debug>true</debug>
+			</li>
+		</value>
+	</Operation>
+</Patch>
