@@ -1,20 +1,24 @@
+using System.Collections.Generic;
 using RimWorld;
 using Verse;
-using System.Collections.Generic;
 
-using LTF_Lanius;
+//using LTF_Lanius;
 
 namespace StoneCampFire
 {
     public class CompLightableRefuelable : CompRefuelable
     {
-        protected CompExtinguishable extinguishableComp;
         //protected CompLightableRefuelable refuelableComp;
         //protected CompRefuelable refuelableComp;
         //protected CompVariousGlow variousGlowComp;
 
         public const int CheckEvery5Second = 300;
-        protected bool LaniusMod = false;
+        protected CompExtinguishable extinguishableComp;
+        protected bool LaniusMod;
+        private bool WasLow;
+        private bool WasMedium;
+
+        private bool WasRegular;
 
         //CompVariousGlow.GlowStatus LastStatus;
         //public const string RanOutOfFuelSignal = "RanOutOfFuel";
@@ -25,27 +29,26 @@ namespace StoneCampFire
 
         private bool MyDebug => extinguishableComp?.MyDebug == true;
 
-        private bool IsRegular => !extinguishableComp.IsMediumFire && !extinguishableComp.IsLowFire && extinguishableComp.SwitchIsOn;
+        private bool IsRegular => !extinguishableComp.IsMediumFire && !extinguishableComp.IsLowFire &&
+                                  extinguishableComp.SwitchIsOn;
+
         private bool IsMedium => extinguishableComp.IsMediumFire && extinguishableComp.SwitchIsOn;
         private bool IsLow => extinguishableComp.IsLowFire && extinguishableComp.SwitchIsOn;
 
-        private bool WasRegular;
-        private bool WasMedium;
-        private bool WasLow;
-
-        void UpdateGlowStatus()
+        private void UpdateGlowStatus()
         {
-            bool RegularNeeded = IsRegular != WasRegular;
-            bool MediumNeeded = IsMedium != WasMedium;
-            bool LowNeeded = IsLow != WasLow;
-            bool NeedToGlowSpawn = RegularNeeded || MediumNeeded || LowNeeded;
+            var RegularNeeded = IsRegular != WasRegular;
+            var MediumNeeded = IsMedium != WasMedium;
+            var LowNeeded = IsLow != WasLow;
+            var NeedToGlowSpawn = RegularNeeded || MediumNeeded || LowNeeded;
 
-            if(NeedToGlowSpawn)
+            if (NeedToGlowSpawn)
             {
-                if(extinguishableComp.GetGlowMote() is ThingWithComps glowMote)
+                if (extinguishableComp.GetGlowMote() is ThingWithComps glowMote)
                 {
                     glowMote.Destroy(DestroyMode.KillFinalize);
                 }
+
                 extinguishableComp.SpawnIfNoGlow();
             }
 
@@ -79,9 +82,12 @@ namespace StoneCampFire
                 Log.Warning("Cant find extinguishableComp: " + parent.Label);
                 return;
             }
+
             //Log.Warning("1", true);
             if (!extinguishableComp.SwitchIsOn)
+            {
                 return;
+            }
 
             //Log.Warning("2", true);
             // regular consumption
@@ -111,46 +117,56 @@ namespace StoneCampFire
             //Log.Warning("every1sec", true);
 
             if (!extinguishableComp.RainVulnerable && !extinguishableComp.OxygenVulnerable)
+            {
                 return;
+            }
 
             if (!parent.IsHashIntervalTick(300))
+            {
                 return;
+            }
 
             //Log.Warning("7", true);
             //if(MyDebug) Log.Warning("every5sec");
 
             // raining, chances to extinguish
             if (extinguishableComp.RainVulnerable)
+            {
                 RollForRainFire();
+            }
 
             //Log.Warning("8", true);
             // lanius mod active, checking oxygen ratio
-            if (extinguishableComp.OxygenVulnerable)
-                if (LaniusMod)
-                {
-                    Room room = parent.GetRoom();
-                    if (room.PsychologicallyOutdoors)
-                        return;
-                    float breathablility = parent.Map.GetComponent<RoomBreathabilityManager>().RoomBreathability(room);
+            //if (extinguishableComp.OxygenVulnerable)
+            //    if (LaniusMod)
+            //    {
+            //        Room room = parent.GetRoom();
+            //        if (room.PsychologicallyOutdoors)
+            //            return;
+            //        float breathablility = parent.Map.GetComponent<RoomBreathabilityManager>().RoomBreathability(room);
 
-                    if (breathablility < 50f)
-                    {
-                        extinguishableComp.DoFlick(false);
-                        extinguishableComp.ResetToOff();
-                    }
-                }
+            //        if (breathablility < 50f)
+            //        {
+            //            extinguishableComp.DoFlick(false);
+            //            extinguishableComp.ResetToOff();
+            //        }
+            //    }
         }
 
         private bool RollForRainFire()
         {
-            if ((!RainThreshold) ||
-                (!UnroofedBuilding))
+            if (!RainThreshold ||
+                !UnroofedBuilding)
+            {
                 return false;
+            }
 
             // propsChance * isItRaining
-            float chance = extinguishableComp.ExtinguishInRainChance * parent.Map.weatherManager.RainRate;
+            var chance = extinguishableComp.ExtinguishInRainChance * parent.Map.weatherManager.RainRate;
             if (!Rand.Chance(chance))
+            {
                 return false;
+            }
 
             // unroofed
             if (UnroofedBuilding)
@@ -159,6 +175,7 @@ namespace StoneCampFire
                 extinguishableComp.ResetToOff();
                 return true;
             }
+
             return false;
         }
 
@@ -176,7 +193,6 @@ namespace StoneCampFire
 
             //refuelableComp = this.parent.GetComp<CompLightableRefuelable>();
             //lastStatus = variousGlowComp.MyGlowWay(FuelPercentOfMax);
-            
         }
 
         /*
@@ -198,27 +214,24 @@ namespace StoneCampFire
             //refuelableComp = this.parent.GetComp<CompRefuelable>();
             //lastStatus = variousGlowComp.MyGlowWay(FuelPercentOfMax);
             LaniusMod = ModCompatibilityCheck.LaniusIsActive;
-            
+
             //this.breakdownableComp = this.parent.GetComp<CompBreakdownable>();
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-            foreach (Gizmo item in base.CompGetGizmosExtra())
+            foreach (var item in base.CompGetGizmosExtra())
             {
                 yield return item;
             }
+
             if (Prefs.DevMode)
             {
-                Command_Action command_Action = new Command_Action();
+                var command_Action = new Command_Action();
                 command_Action.defaultLabel = "Debug: Remove 1f";
-                command_Action.action = delegate
-                {
-                    ConsumeFuel(1f);
-                };
+                command_Action.action = delegate { ConsumeFuel(1f); };
                 yield return command_Action;
             }
         }
-
     }
 }

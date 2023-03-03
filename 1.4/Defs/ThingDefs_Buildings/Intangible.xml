@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef Name="StonyCampFire_IntangibleBuildingBase" ParentName="BuildingBase" Abstract="True">
+		<!-- <thingClass>Building</thingClass> -->
+		<thingClass>ThingWithComps</thingClass>
+		<!-- <category>Building</category> -->
+		<category>Mote</category>
+
+		<graphicData>
+			<texPath>Things/Building/emptyTex</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>Transparent</shaderType>
+		</graphicData>
+
+		<scatterableOnMapGen>false</scatterableOnMapGen>
+		<useHitPoints>false</useHitPoints>
+		<!-- <destroyable>false</destroyable> -->
+
+		<size>(1,1)</size>
+
+		<leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+		<filthLeaving Inherit="False"/>
+
+		<clearBuildingArea>false</clearBuildingArea>
+		<tickerType>Rare</tickerType>
+
+		<altitudeLayer>BuildingOnTop</altitudeLayer>
+
+		<passability>Standable</passability>
+		<blockWind>false</blockWind>
+		<castEdgeShadows>false</castEdgeShadows>
+		<fillPercent>0</fillPercent>
+		<coversFloor>false</coversFloor>
+		
+		<selectable>false</selectable>
+		<neverMultiSelect>true</neverMultiSelect>
+
+		<building>
+			<ai_chillDestination>false</ai_chillDestination>
+			<isInert>false</isInert>
+			<isEdifice>false</isEdifice>
+			<artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+			<claimable>false</claimable>
+			<alwaysDeconstructible>false</alwaysDeconstructible>
+			<deconstructible>false</deconstructible>
+		</building>
+
+		<rotatable>false</rotatable>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+	</ThingDef>
+
+	<ThingDef ParentName="StonyCampFire_IntangibleBuildingBase">
+		<defName>StonyCampFire_GlowerRegular</defName>
+		<label>StonyCampFire glower</label>
+
+		<description>Hi this is glower</description>
+
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>10</glowRadius>
+				<glowColor>(252,187,113,0)</glowColor>
+			</li>
+			<li Class="StoneCampFire.CompProperties_LifeSpanWithParentCheck">
+				<lifespanTicks>180</lifespanTicks>
+				<!-- <debug>true</debug> -->
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="StonyCampFire_IntangibleBuildingBase">
+		<defName>StonyCampFire_GlowerMedium</defName>
+		<label>StonyCampFire glower</label>
+
+		<description>Hi this is glower</description>
+
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>10</glowRadius>
+				<glowColor>(252,135,80,0)</glowColor>
+			</li>
+			<li Class="StoneCampFire.CompProperties_LifeSpanWithParentCheck">
+				<lifespanTicks>180</lifespanTicks>
+				<!-- <debug>true</debug> -->
+			</li>
+		</comps>
+	</ThingDef>
+	
+	<ThingDef ParentName="StonyCampFire_IntangibleBuildingBase">
+		<defName>StonyCampFire_GlowerLow</defName>
+		<label>StonyCampFire glower</label>
+
+		<description>Hi this is glower</description>
+
+		<comps>
+			<li Class="CompProperties_Glower">
+				<glowRadius>10</glowRadius>
+				<glowColor>(252,90,50,0)</glowColor>
+			</li>
+			<li Class="StoneCampFire.CompProperties_LifeSpanWithParentCheck">
+				<lifespanTicks>180</lifespanTicks>
+				<!-- <debug>true</debug> -->
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>
